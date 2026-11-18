@@ -765,7 +765,7 @@ public class SeoService {
             case "NC::buncombe-county" -> "Buncombe County NC Septic Permit Lookup and Accela Records";
             case "NC::wake-county" -> "Wake County NC Septic Permit Search and iMAPS Records";
             case "NC::union-county" -> "Union County NC Septic Permit Search | Existing Records";
-            case "NC::johnston-county", "TX::travis-county", "TX::williamson-county" -> countyPage.title();
+            case "NC::johnston-county", "TX::travis-county", "TX::williamson-county", "OH::hamilton-county" -> countyPage.title();
             case "TN::wilson-county" -> "Wilson County TN Septic Permit Search | TDEC Records";
             case "NC::pitt-county" -> "Pitt County NC Septic Permit Search and Authorization to Construct";
             case "NC::pender-county" -> "Pender County NC Septic Permit Search & Records";
@@ -814,7 +814,7 @@ public class SeoService {
 
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
         String priorityDescription = switch (countyPage.key()) {
-            case "OH::lake-county", "NC::henderson-county" -> countyPage.metaDescription();
+            case "OH::lake-county", "OH::hamilton-county", "NC::henderson-county" -> countyPage.metaDescription();
             case "VA::prince-william-county" -> "Find Prince William County septic permits and plans by street address or GPIN. Use the Health District contact if the historical archive is unavailable.";
             case "TX::tarrant-county" -> "Confirm whether Tarrant County, a contract city, or an ETJ owns the OSSF file before requesting the permit, LTO, site evaluation, or recorded affidavit.";
             case "TN::hamilton-county" -> "Use Hamilton County document retrieval and its Groundwater fallback to obtain the septic permit and installation certificate of completion.";

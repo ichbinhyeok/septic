@@ -15,6 +15,11 @@
         <p><a href="https://www.maricopa.gov/2581/Online-Septic-Research" target="_blank" rel="noreferrer">Check current county fees and open the research request form</a>. Fee and timing checked November 18, 2026.</p>
         <p>Looking for the drawing rather than just a permit number? <a href="/septic-as-built-records/">See which layout documents to look for</a>.</p>
     </section>
+@elseif ("IN::tippecanoe-county".equals(countyKey))
+    <section class="content-quick-answer" id="tippecanoe-septic-drawing" aria-labelledby="tippecanoe-septic-drawing-title" data-search-intent-answer>
+        <h2 id="tippecanoe-septic-drawing-title">Have a building permit number but need the septic drawing?</h2>
+        <p>Use <a href="https://www.tippecanoe.in.gov/418/Building-Permits-Online-Search" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="tippecanoe_building_permit_search" data-track-target-type="official_source">Building Permits Online Search</a> for a dwelling permit reference. Ask the <a href="https://www.tippecanoe.in.gov/569/Sewage-Disposal" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="tippecanoe_diagram_request" data-track-target-type="official_source">Health Department</a> for the septic diagram using the site address and any known parcel or permit number. The department can provide available diagrams by email or in print. Coverage varies by property.</p>
+    </section>
 @elseif ("NC::union-county".equals(countyKey))
     <section class="content-quick-answer" id="union-record-search" aria-label="Union County permit lookup quick start" data-search-intent-answer>
         <h2>Union County permit search: which route has the septic file?</h2>

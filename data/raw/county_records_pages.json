@@ -3568,24 +3568,24 @@
       "stateCode": "OH",
       "countyName": "Hamilton County",
       "countySlug": "hamilton-county",
-      "title": "Hamilton County Ohio Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Hamilton County septic records checklist and permit lookup with permit-status checks, buyer inspection workflow, and county file pulls before you trust a repair or transfer story.",
-      "introCopy": "In Hamilton County, the county ties permit status, inspection history, and buyer inspections into one practical sewage-treatment workflow. This is a real county file path, not another broad Ohio summary.",
-      "uniqueAngle": "Hamilton County stands out because the county makes the inspection cadence and jurisdiction split visible. Mechanical systems are inspected yearly, non-mechanical systems every five years, and the county reminds owners that Cincinnati, Norwood, and Springdale do not sit inside the same local lane.",
+      "title": "Hamilton County OH Septic Inspection Records by Address",
+      "metaDescription": "Look up the latest Hamilton County, Ohio septic inspection by address. See the cities outside the map and request original reports, permits or layout drawings.",
+      "introCopy": "Hamilton County Public Health publishes a map for the latest inspection it performed on a sewage treatment system. Use the public records route for report copies, earlier inspections, operation permits and septic layouts.",
+      "uniqueAngle": "The Health District inspection map shows the latest result available at its last weekly update. Cincinnati, Norwood and Springdale are outside its coverage, and original files follow a separate records request.",
       "targetReader": "Best for Hamilton County buyers, owners, and agents who need to know whether the county file, permit status, and inspection history are strong enough to support a repair, buyer inspection, or transfer conversation.",
       "officeLabel": "Hamilton County sewage treatment systems office",
       "officeUrl": "https://hamiltoncountyhealth.org/services/water-quality/new-sewage-treatment-systems/",
-      "recordsLabel": "View Hamilton County inspection results and permit status",
+      "recordsLabel": "Open Hamilton County Public Health inspection instructions",
       "recordsUrl": "https://hamiltoncountyhealth.org/services/water-quality/new-sewage-treatment-systems/",
       "contactLine": "Hamilton County Public Health Water Quality | 513-946-7966 | hcphcustserv@hamilton-co.org",
       "decisionSteps": [
         "Confirm first that the parcel is really in Hamilton County Public Health's sewage-treatment jurisdiction and not inside Cincinnati, Norwood, or Springdale.",
-        "Use the county permit-status and inspection-history path before you trust a buyer or repair story, because Hamilton County treats the file and the field visit as separate questions.",
+        "Use the address-based inspection map for the latest displayed result. Ask the records office for earlier reports, permits or plans.",
         "If the property is in transfer, check the county buyer inspection workflow early because vacancy, recent pumping, or inaccessible risers can delay the real inspection."
       ],
       "recordsToRequest": [
         "Any Hamilton County permit-status or plan-approval history tied to the parcel.",
-        "Any annual or five-year inspection history already in the county file.",
+        "The most recent inspection report and any earlier reports you need for the same property.",
         "Any buyer-inspection note showing whether the county had to delay or condition the visit."
       ],
       "lowEndBreakers": [
@@ -3593,14 +3593,32 @@
         "A passing visit means less if the inspection history shows repeated mechanical or operational issues.",
         "If a buyer inspection is delayed by vacancy, recent pumping, or inaccessible risers, a simple transfer story can widen fast."
       ],
+      "updatedAt": "2026-11-19",
+      "searchGuide": {
+        "summary": "Search by street address for the latest Hamilton County Public Health septic inspection. For a report copy, older inspection, operation permit or drawing, use the separate public records route.",
+        "coverage": "Latest inspection available at the map’s weekly update within the Health District. The map excludes Cincinnati, Norwood and Springdale. Check the local office for addresses in those cities.",
+        "identifiers": "Physical street address for the map. Include municipality and any known parcel or permit number when asking for copies.",
+        "documents": "Latest inspection information in the viewer. Ask for copies of original inspections, earlier reports, operation permits or layout drawings.",
+        "steps": [
+          "Open the county Sewage Treatment Systems page. Under Routine Inspection Program, follow the inspection results map and search by the property’s street address.",
+          "Select the map point for the matching system. Read the most recent inspection result and its date. For a home purchase, ask Water Quality about the voluntary buyer inspection and follow its guidance on historical results.",
+          "Use the Public Records Requests instructions to ask for the original report, earlier inspections, operation permit or layout drawing. Name the exact record you need and compare the site address or parcel on each returned page."
+        ],
+        "noResult": "If the map stalls or the detail you need is missing, contact Water Quality at 513-946-7966 or use the county’s public records route. Ask the responsible city office first for Cincinnati, Norwood or Springdale properties.",
+        "sourceIds": [
+          "oh_hamilton_01",
+          "oh_hamilton_03"
+        ],
+        "reviewedAt": "2026-11-19"
+      },
       "faqBlocks": [
         {
-          "question": "Why is Hamilton County strong for records and buyer intent?",
-          "answer": "Because Hamilton County combines permit status, inspection history, and buyer-inspection workflow instead of forcing owners to guess from one generic county contact page."
+          "question": "How do I find a Hamilton County, Ohio septic inspection result?",
+          "answer": "Open the inspection map from the county Sewage Treatment Systems page, search by street address and select the matching system point. The district’s map excludes Cincinnati, Norwood and Springdale."
         },
         {
           "question": "What should a Hamilton County owner or buyer check first?",
-          "answer": "Start with the county permit status and inspection history so you know whether the local file actually supports the current system story."
+          "answer": "Check the date of the displayed inspection. Use the Public Records Requests page for copies or older reports, and ask Water Quality about the separate buyer inspection."
         }
       ],
       "internalLinkTargets": [
@@ -3611,13 +3629,13 @@
       ],
       "officialSourceIds": [
         "oh_hamilton_01",
-        "oh_hamilton_02",
+        "oh_hamilton_03",
         "oh_01"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_public_health",
         "fileOwnerModel": "Hamilton County Public Health owns the practical sewage-treatment file once the parcel is really in county jurisdiction, but the permit-status trail, inspection cadence, and buyer-inspection record all have to support the same story.",
-        "firstArtifactToPull": "The jurisdiction check first, then the permit-status history, annual or five-year inspection trail, and any buyer-inspection note tied to the parcel.",
+        "firstArtifactToPull": "The latest dated inspection result for the matched address; request earlier reports and the operation permit separately when needed.",
         "permitCloseoutCategory": "generic",
         "permitCloseoutSignal": "Hamilton County only gets clean once the permit-status trail and inspection history both show the same active-use story.",
         "transferCategory": "formal_transfer_artifact",
@@ -21592,6 +21610,7 @@
       "officialSourceIds": [
         "in_tippecanoe_01",
         "in_tippecanoe_02",
+        "in_tippecanoe_03",
         "in_03"
       ],
       "workflowStructure": {
@@ -21608,6 +21627,7 @@
         "malfunctionSignal": "Any complaint, failure, repair application, or tank replacement record should be resolved before the system is treated as routine.",
         "quoteGate": "Do not move from lookup to pricing until the county file owner, first artifact, and repair or closeout status agree with the buyer, seller, or contractor story."
       },
+      "updatedAt": "2026-11-19",
       "publishStatus": "published"
     },
     {
