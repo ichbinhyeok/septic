@@ -77,6 +77,14 @@
                    data-track-click="nav"
                    data-track-source-context="county_records_premium_official"
                    data-track-target-type="official_source">${countyRecordStart.officialLabel()}</a>
+                @if (!countyRecordStart.alternateUrl().isBlank())
+                    <a class="county-record-start__help"
+                       href="${countyRecordStart.alternateUrl()}"
+                       data-record-official-link
+                       data-track-click="nav"
+                       data-track-source-context="county_records_start_alternate"
+                       data-track-target-type="official_source">${countyRecordStart.alternateLabel()}</a>
+                @endif
                 <a class="county-record-start__help"
                    href="${RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())}"
                    data-record-help-cta
@@ -1203,7 +1211,7 @@
                         <dt>Done when</dt>
                         <dd>${countyAccessProfile != null ? countyAccessProfile.completionLabel() : "You have the file or a written office response"}</dd>
                     </div>
-                    @if (countyAccessProfile != null && countyAccessProfile.limitation() != null && !countyAccessProfile.limitation().isBlank())
+                    @if (countyAcquisitionProfile != null && countyAccessProfile != null && countyAccessProfile.limitation() != null && !countyAccessProfile.limitation().isBlank())
                     <div>
                         <dt>Watch for</dt>
                         <dd>${countyAccessProfile.limitation()}</dd>

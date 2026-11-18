@@ -12,7 +12,7 @@
         @elseif ("county".equals(variant))
             <span class="record-evidence__eyebrow">REAL COUNTY FILES</span>
             <h2>This is the kind of record the route should produce.</h2>
-            <p>Selected pages from completed requests show the original agency file, drawing, and plain-English brief. Availability still depends on the property and office.</p>
+            <p>The permit, drawing and brief come from completed requests.</p>
         @else
             <span class="record-evidence__eyebrow">REAL WORK SAMPLES</span>
             <h2>We chase the file. Then make it usable.</h2>
