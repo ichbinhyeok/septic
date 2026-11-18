@@ -4,9 +4,15 @@
 @if ("AZ::maricopa-county".equals(countyKey))
     <section class="content-quick-answer" aria-label="Maricopa septic search quick start" data-search-intent-answer>
         <h2>Where do I search Maricopa County septic records?</h2>
-        <p>Start with the county's free Online Septic Search. Its first screen asks you to accept the county's data disclaimer; it is not the paid research request.</p>
+        <p>Open the county’s free Online Septic Search and review the data disclaimer. Select Agree to continue and have the property address or assessor parcel number ready.</p>
         <p><a class="button button--secondary" href="https://www.maricopa.gov/FormCenter/Environmental-Services-16/Online-Septic-Search-92" target="_blank" rel="noreferrer" data-track-click="official_source" data-record-official-link data-track-source-context="maricopa_search_quick_start" data-track-target-type="official_source">Open free county septic search</a></p>
-        <p><strong>No file returned?</strong> The county also lists a paid research option. An empty online result alone does not establish that no record exists. <a href="https://www.maricopa.gov/2581/Online-Septic-Research" target="_blank" rel="noreferrer">Check the county's research options and current fees</a>.</p>
+        <h3>If the free search returns no permit or drawing</h3>
+        <p>Check the address and parcel number first. If the file still does not appear, you can ask the county to research its records.</p>
+        <ul>
+            <li><strong>Standard research:</strong> $30, typically 3–7 business days.</li>
+            <li><strong>Expedited research:</strong> $60, typically 1–2 business days.</li>
+        </ul>
+        <p><a href="https://www.maricopa.gov/2581/Online-Septic-Research" target="_blank" rel="noreferrer">Check current county fees and open the research request form</a>. Fee and timing checked November 18, 2026.</p>
         <p>Looking for the drawing rather than just a permit number? <a href="/septic-as-built-records/">See which layout documents to look for</a>.</p>
     </section>
 @elseif ("NC::union-county".equals(countyKey))

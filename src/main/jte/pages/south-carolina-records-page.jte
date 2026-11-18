@@ -12,15 +12,15 @@
         <section class="tdec-desk__intro sc-service-hero" aria-labelledby="sc-page-title">
             <div class="container tdec-desk__intro-grid">
                 <div class="sc-service-hero__copy">
-                    <span class="eyebrow">DHEC search failed or only found a map pin?</span>
-                    <h1 id="sc-page-title">Send the address.<br><em>We chase the South Carolina septic file.</em></h1>
-                    <p>We confirm the county and TMS, search SCDES and public sources, contact the responsible office when needed, and explain what the returned file means for your property.</p>
-                    <div class="tdec-desk__hero-actions"><a class="button button--primary" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="sc_hero_record_investigation" data-track-target-type="lead_form">Ask SepticPath to investigate my property <span aria-hidden="true">→</span></a><a class="text-button" href="#sc-record-search" data-track-click="nav" data-track-source-context="sc_hero_request_builder" data-track-target-type="request_builder">Find the official SCDES route myself <span aria-hidden="true">→</span></a></div>
+                    <span class="eyebrow">South Carolina septic permit lookup · SCDES, formerly DHEC</span>
+                    <h1 id="sc-page-title">Find South Carolina Septic Permits and Tank Records</h1>
+                    <p>Start with the property’s street address or tax map number (TMS). Use the SCDES lookup below, or ask us for help finding the permit, layout drawing, or final approval.</p>
+                    <div class="tdec-desk__hero-actions"><a class="button button--primary" href="#sc-record-search" data-track-click="nav" data-track-source-context="sc_hero_request_builder" data-track-target-type="request_builder">Start SCDES lookup <span aria-hidden="true">→</span></a><a class="text-button" href="/offer-prep-septic-file-check/#record-help" data-record-help-cta data-track-click="nav" data-track-source-context="sc_hero_record_investigation" data-track-target-type="lead_form">Get help finding a record <span aria-hidden="true">→</span></a></div>
                     <p class="sc-service-hero__price">Research, records and explanation are free. Agency fees only with approval.</p>
-                    <div class="sc-service-hero__steps" aria-label="How SepticPath works">
-                        <span><b>01 · Identify</b><small>County, address, and TMS</small></span>
-                        <span><b>02 · Search</b><small>SCDES and official sources</small></span>
-                        <span><b>03 · Explain</b><small>A property-matched answer</small></span>
+                    <div class="sc-service-hero__steps" aria-label="Records to look for">
+                        <span><b>Permit to Construct</b><small>What was approved for installation</small></span>
+                        <span><b>Layout drawing</b><small>Where the tank and drainfield were planned</small></span>
+                        <span><b>Approval to Operate</b><small>Look for final approval and inspection records</small></span>
                     </div>
                     <small class="tdec-desk__independent">Independent service. SCDES and local offices control record availability, response timing, and permit status.</small>
                 </div>

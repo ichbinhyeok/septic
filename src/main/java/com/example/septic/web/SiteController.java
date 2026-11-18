@@ -2218,7 +2218,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         "https://jcdh.org/SitePages/Misc/PdfViewer?AdminUploadId=370",
                         "Open Jefferson County permit application",
                         "Prepare the applicant contact, property location, subdivision and lot data, residence type, bedroom count, water source, sewer distance, and plot plan. A registered engineer, land surveyor, or soil classifier completes the professional soil section.",
-                        "JCDH reviews professional site data and performs its own field review. Its page says fees vary; do not substitute the statewide $150-$250 public-evaluation band.",
+                        "JCDH reviews professional site data and performs its own field review. Its page says fees vary; confirm the charge with JCDH.",
                         "What is the current fee, how many copies are required, and can I submit the application digitally or must I deliver the listed copies?",
                         ""
                 ),
@@ -2232,7 +2232,7 @@ The goal is to settle the permit path before we frame the project as a normal in
                         stateForms,
                         "Open current ADPH CEP forms",
                         "Prepare the property address or parcel ID, owner name, project type, bedroom count, sewer-availability answer, existing Permit to Install or Approval for Use, and any soil report or plot plan.",
-                        "The reviewed county page confirms onsite permitting and inspection but does not publish whether Madison participates in the $150-$250 public Site Evaluation Program.",
+                        "The reviewed county page confirms onsite permitting and inspection but does not confirm a public site-evaluation service or its price.",
                         "Does Madison County perform the public site evaluation, what is the current application fee, and which form and submission channel should I use for this parcel?",
                         "/septic-records-checklist/alabama/madison-county/"
                 ),

@@ -140,14 +140,14 @@ public class EstimatorService {
 
         if ("AL".equals(state.stateCode())) {
             if (projectType == ProjectType.NEW_INSTALL || projectType == ProjectType.REPLACEMENT) {
-                officialBasis.add("ADPH currently publishes a $100-$200 flat dwelling application fee for conventional or engineered small-flow systems. This is an official fee layer, not the full project cost.");
+                officialBasis.add("County health departments set or publish application charges. Etowah County lists $200 for a conventional sewage permit application effective September 1, 2026. Confirm the amount for your county.");
                 checklist.add("Ask the county health department for the exact current application charge and whether a changed site or revised application would require another non-refundable fee.");
             }
             if (projectType == ProjectType.PERC_TEST || projectType == ProjectType.NEW_INSTALL) {
-                officialBasis.add("ADPH publishes a $150-$250 public site-evaluation fee only in counties with an approved Site Evaluation Program and only for conventional small-flow systems.");
+                officialBasis.add("Ask the county whether a public site evaluation is available and what it charges for your project type.");
                 checklist.add("Confirm whether this county participates in ADPH's public Site Evaluation Program or requires a private registered professional.");
             }
-            methodologyLimits.add("Alabama's official fee bands cover the public application or eligible site-evaluation layer only. Private soil work, survey, engineering, installation, excavation, and restoration are not official statewide prices.");
+            methodologyLimits.add("Budget separately for county application and evaluation charges, private soil work, survey, engineering, installation, excavation, and restoration.");
         }
 
         if ("OR".equals(state.stateCode())) {

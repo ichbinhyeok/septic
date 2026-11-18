@@ -47,9 +47,9 @@ class OfficialRecordsWorkflowRegressionTest {
     void southCarolinaRouteUsesThePublicScdesSearchAndHonestFallbacks() throws Exception {
         mockMvc.perform(get("/dhec-septic-permit-lookup/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Send the address.")))
-                .andExpect(content().string(containsString("We chase the South Carolina septic file.")))
-                .andExpect(content().string(containsString("Ask SepticPath to investigate my property")))
+                .andExpect(content().string(containsString("Find South Carolina Septic Permits and Tank Records")))
+                .andExpect(content().string(containsString("Start SCDES lookup")))
+                .andExpect(content().string(containsString("Get help finding a record")))
                 .andExpect(content().string(containsString("Research, records and explanation are free. Agency fees only with approval.")))
                 .andExpect(content().string(not(containsString("$29"))))
                 .andExpect(content().string(containsString("Search SCDES for the property’s septic file")))
@@ -179,7 +179,7 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("<title>TDEC Septic Permit Search by Address | Tennessee Records</title>")))
                 .andExpect(content().string(containsString("Find the TDEC or county route for your Tennessee address.")));
         mockMvc.perform(get("/septic-system-cost-calculator/alabama/"))
-                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost (2026): $300-$2,700 + Fees</title>")));
+                .andExpect(content().string(containsString("<title>Alabama Perc Test Cost &amp; County Permit Fees</title>")));
         mockMvc.perform(get("/texas-ossf-records-search/"))
                 .andExpect(content().string(containsString("<title>Texas OSSF Permit Search by Address | Local Records</title>")))
                 .andExpect(content().string(containsString("identify the local permitting authority")));

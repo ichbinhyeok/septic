@@ -68,7 +68,29 @@
                     <p class="lede">Turn the property details you know into a clear request you can copy, download, or print.</p>
                 @else
                     <h1>${contentPage.title()}</h1>
-                    <p class="lede">${contentPage.introCopy()}</p>
+                    @if ("perc-test-cost".equals(contentPage.slug()))
+                        <p class="lede">Use ${percPlanningRange} as a broad planning estimate for a perc test or private soil work. Compare what each quote includes and check which fees the permitting office charges separately.</p>
+                    @else
+                        <p class="lede">${contentPage.introCopy()}</p>
+                    @endif
+                @endif
+                @if ("perc-test-cost".equals(contentPage.slug()))
+                    <section class="content-quick-answer" aria-labelledby="perc-cost-answer">
+                        <h2 id="perc-cost-answer">Ask what the quote includes</h2>
+                        <div class="facts-table-wrap">
+                            <table class="facts-table">
+                                <caption>Perc test cost breakdown</caption>
+                                <thead><tr><th scope="col">Cost item</th><th scope="col">What to confirm</th></tr></thead>
+                                <tbody>
+                                    <tr><th scope="row">Agency fee</th><td>Which office charges for the permit application or site evaluation?</td></tr>
+                                    <tr><th scope="row">Private soil work</th><td>How many test locations and visits are included?</td></tr>
+                                    <tr><th scope="row">Excavation</th><td>Who provides test pits, equipment, and backfill?</td></tr>
+                                    <tr><th scope="row">Report and design</th><td>Does the price include a written report, plot plan, filing, or engineering?</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p><strong>Verified examples:</strong> <a href="/perc-test-cost/south-carolina/">South Carolina’s $150 SCDES residential application</a> and <a href="/perc-test-cost/oregon/">Oregon DEQ’s $1,121 first-lot evaluation</a> cover different services. Confirm your county’s requirements before paying.</p>
+                    </section>
                 @endif
                 @if (fieldServicePage)
                     @template.tags.localServiceCta(sourceContext = "field_guide", servicePath = contentQuotePath == null ? "/septic-system-cost-calculator/?quoteMode=true#quote-request" : contentQuotePath, urgent = "septic-backup-slow-drains".equals(contentPage.slug()) || "wet-yard-over-septic-drain-field".equals(contentPage.slug()))
@@ -880,31 +902,6 @@
                     totalCountyRouteCount = totalCountyRouteCount,
                     minimal = true
                 )
-            </div>
-        </section>
-    @endif
-
-    @if ("perc-test-cost".equals(contentPage.slug()))
-        <section class="section section--tight" aria-labelledby="perc-cost-answer">
-            <div class="container detail-grid">
-                <article class="detail-card detail-card--full">
-                    <span class="eyebrow">National planning range</span>
-                    <h2 id="perc-cost-answer">${percPlanningRange} is the starting range, not the finished quote.</h2>
-                    <p>A routine visit can stay near the low end. Multiple test locations, engineered soil work, a plot plan, difficult access, retesting, or a county-required site evaluation can move the scope toward the high end before any septic installation cost begins.</p>
-                </article>
-                <article class="detail-card">
-                    <h3>Ask what the quote includes</h3>
-                    <ul class="detail-list">
-                        <li>Field visit, soil or percolation work, and the number of test locations.</li>
-                        <li>Professional report, plot-plan work, filing, and local permit fees.</li>
-                        <li>Retesting, seasonal timing, travel, excavation, or difficult-access charges.</li>
-                    </ul>
-                </article>
-                <article class="detail-card">
-                    <h3>Use a state route only where evidence exists</h3>
-                    <p>The state links on this page are deliberately limited to routes with observed search demand or stronger supporting evidence. Other state URLs remain available for users who already have them, but they are not promoted as separate search results yet.</p>
-                    <a class="button button--secondary" href="#state-pages" data-track-click="nav" data-track-source-context="perc_cost_answer_state_routes" data-track-target-type="state_money_page_directory">Browse supported state routes</a>
-                </article>
             </div>
         </section>
     @endif

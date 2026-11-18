@@ -303,9 +303,9 @@
         "soil test for septic",
         "perc test for septic system"
       ],
-      "title": "Perc Test Cost: National Range and State Routes",
-      "metaDescription": "Perc tests typically cost $300-$3,000. See what changes the quote, what should be included, and which state or county site-review path to check next.",
-      "introCopy": "A perc test typically falls in a $300-$3,000 national planning range. A routine visit may stay near the low end, while multiple test locations, engineered soil work, plot plans, retesting, difficult access, or county-required site evaluation can push the scope higher. Use the supported state routes below only when local evidence changes the answer.",
+      "title": "How Much Does a Perc Test Cost?",
+      "metaDescription": "See what a perc test quote covers, how permit and site evaluation fees differ, and where to check your state’s requirements.",
+      "introCopy": "Use $300-$3,000 as a broad planning estimate for a perc test or private soil work. Compare what each quote includes and check which application or evaluation fees are charged separately in your area.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "perc_test",
       "targetReader": "Best for homeowners, buyers, and land shoppers who need a usable perc-test budget, a checklist for comparing quotes, and a supported local route when state or county rules change the scope.",
@@ -321,7 +321,7 @@
       "decisionSteps": [
         "Use $300-$3,000 as the initial planning band, then ask every provider for the same included-scope list.",
         "Check whether the property already has a prior perc result, soil report, plot plan, or site-evaluation record before paying to recreate it.",
-        "Open a supported state perc route only when it appears below; those routes have observed demand or stronger evidence behind them.",
+        "Check your state’s permitting and site-evaluation process before ordering field work.",
         "Use the permit or failed-perc path only after the current test scope and local decision-maker are clear."
       ],
       "lowEndBreakers": [
@@ -350,8 +350,8 @@
           "answer": "Yes. Homeowners, agents, and contractors often use perc, perk, and percolation test to describe the same soil-absorption question, even if the local process also includes a broader site evaluation."
         }
       ],
-      "updatedAt": "2026-07-20",
-      "reviewedAt": "2026-07-20",
+      "updatedAt": "2026-11-18",
+      "reviewedAt": "2026-11-18",
       "internalLinkTargets": [
         "/failed-perc-test-septic/",
         "/septic-replacement-area/",

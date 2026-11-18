@@ -51,8 +51,7 @@
                         <p>${stateQuickAnswer}</p>
                         @if ("AL".equals(state.stateCode()))
                             <p class="content-quick-answer__source">
-                                Official fee source: <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer">Alabama Department of Public Health Fee System Manual</a>
-                                · reviewed 2026-07-30
+                                County fee example: <a href="https://www.alabamapublichealth.gov/Etowah/environmental-fees.html" target="_blank" rel="noreferrer">Etowah County Health Department fee schedule</a> · effective September 1, 2026
                             </p>
                         @elseif (primaryRecordsLookupSource != null)
                             <p class="content-quick-answer__source">
@@ -83,23 +82,23 @@
                         <div class="alabama-perc-scope__intro">
                             <span class="eyebrow">Alabama cost baseline</span>
                             <h2>How much does a perc test cost in Alabama? Plan on ${alabamaPercPlanningRange}, then separate the official fees.</h2>
-                            <p class="alabama-perc-scope__answer">The planning range covers the wider private site-work conversation. It is not the same thing as the county fee. ADPH separately publishes a $150-$250 public site-evaluation fee in participating counties and a $100-$200 dwelling permit-application fee.</p>
+                            <p class="alabama-perc-scope__answer">Ask the county health department which fees and site-evaluation process apply. Request an itemized professional quote for soil work, equipment, and any report or design.</p>
                             <p>Use the three answers below to identify which cost layer applies, what the quote must include, and whether pricing should pause until the county file or sewer question is resolved.</p>
                             <div class="alabama-perc-scope__primary-actions">
                                 <a class="button button--primary" href="/septic-system-cost-calculator/?state=AL&projectType=perc_test" rel="nofollow" data-track-click="nav" data-track-source-context="alabama_perc_primary_estimate" data-track-target-type="calculator">Run the Alabama cost estimate</a>
                                 <span>The scope checker below prepares the county and professional questions; it does not calculate a price.</span>
                             </div>
                         </div>
-                        <div class="alabama-fee-ledger" aria-label="Verified Alabama septic cost layers">
+                        <div class="alabama-fee-ledger" aria-label="Alabama septic cost layers">
                             <article>
                                 <span>Public site evaluation</span>
-                                <strong>$150-$250</strong>
-                                <p>Only for counties with an approved ADPH Site Evaluation Program and conventional small-flow systems.</p>
+                                <strong>Ask the county</strong>
+                                <p>Check whether the county offers a public site evaluation for your project or requires a qualified private professional.</p>
                             </article>
                             <article>
                                 <span>Dwelling permit application</span>
-                                <strong>$100-$200</strong>
-                                <p>ADPH's flat application band for conventional or engineered small-flow dwelling systems. Non-refundable.</p>
+                                <strong>$200 in Etowah County</strong>
+                                <p>Etowah’s conventional sewage permit application fee, effective September 1, 2026. Confirm the fee in your own county.</p>
                             </article>
                             <article>
                                 <span>Private perc / soil planning</span>
@@ -107,9 +106,9 @@
                                 <p>A state-adjusted planning band, not an official fee or live professional quote.</p>
                             </article>
                             <div class="alabama-fee-ledger__footer">
-                                <p><strong>Do not add all three automatically.</strong> The county may not provide the public site evaluation, and private professional work can replace or exceed that layer.</p>
+                                <p><strong>Compare the same scope.</strong> Ask whether the quote covers field work, test pits, a written report, plot plan, and any design or return visit. Confirm which county fees you pay separately.</p>
                                 <div>
-                                    <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_fee_manual" data-track-target-type="official_source">Verify ADPH fee manual</a>
+                                    <a href="https://www.alabamapublichealth.gov/Etowah/environmental-fees.html" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_county_fee_example" data-track-target-type="official_source">See the Etowah fee example</a>
                                     <a href="https://www.alabamapublichealth.gov/onsite/forms.html" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="alabama_perc_cep_forms" data-track-target-type="official_source">Open official CEP forms</a>
                                 </div>
                             </div>

@@ -47,16 +47,16 @@
             <div>
                 <span class="eyebrow">Alabama cost boundary</span>
                 <h3>Official fees and private project costs are different layers.</h3>
-                <p>The result above uses an Alabama-adjusted construction planning anchor. ADPH's published $100-$200 dwelling application band and eligible $150-$250 public site-evaluation band do not represent the full install, repair, or professional-design price.</p>
+                <p>The estimate uses an Alabama-adjusted planning range. Ask the county health department for the application fee, evaluation process, and any inspection charges for the property.</p>
             </div>
             <dl>
                 <div>
                     <dt>County application</dt>
-                    <dd>$100-$200 published band</dd>
+                    <dd>Varies by county and permit type</dd>
                 </div>
                 <div>
                     <dt>Eligible public site evaluation</dt>
-                    <dd>$150-$250 in participating counties</dd>
+                    <dd>Ask whether the county offers this service</dd>
                 </div>
                 <div>
                     <dt>Still quote separately</dt>
@@ -64,7 +64,7 @@
                 </div>
             </dl>
             <div class="alabama-result-ledger__actions">
-                <a href="https://www.alabamapublichealth.gov/programintegrity/assets/FeeSystemManual.pdf" target="_blank" rel="noreferrer">Open ADPH fee manual</a>
+                <a href="https://www.alabamapublichealth.gov/Etowah/environmental-fees.html" target="_blank" rel="noreferrer">See Etowah County’s fee example</a>
                 <a href="https://www.alabamapublichealth.gov/onsite/forms.html" target="_blank" rel="noreferrer">Open CEP forms</a>
                 <a href="/septic-records-checklist/alabama/">Check the county file first</a>
             </div>

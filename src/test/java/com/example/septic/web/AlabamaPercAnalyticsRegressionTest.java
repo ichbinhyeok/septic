@@ -18,7 +18,7 @@ class AlabamaPercAnalyticsRegressionTest {
         assertTrue(appScript.contains("emitGaEvent(\"calculator_completed\""));
         assertTrue(appScript.contains("calculator_type: \"alabama_perc_scope\""));
         assertTrue(appScript.contains("county_selected:"));
-        assertTrue(stateGuide.contains("data-track-source-context=\"alabama_perc_fee_manual\" data-track-target-type=\"official_source\""));
+        assertTrue(stateGuide.contains("data-track-source-context=\"alabama_perc_county_fee_example\" data-track-target-type=\"official_source\""));
         assertTrue(stateGuide.contains("data-track-source-context=\"alabama_perc_selected_county_page\" data-track-target-type=\"official_source\""));
         assertTrue(stateGuide.contains("data-track-source-context=\"alabama_perc_county_form\" data-track-target-type=\"official_source\""));
     }

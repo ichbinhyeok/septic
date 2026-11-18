@@ -6821,8 +6821,8 @@
                     "3. Whether you will identify what the county health department needs for a Permit to Install.",
                     "4. What prior permit, Approval for Use, soil report, or survey you need before field work.",
                     "5. Any exclusions, re-staking, redesign, county fees, or follow-up work not included in the quoted price.",
-                    "6. Whether the ADPH $150-$250 public site-evaluation band applies in this county or a private registered professional is required.",
-                    "7. The exact county Permit to Install application fee; ADPH currently publishes a $100-$200 dwelling band.",
+                    "6. Whether the county offers a public site evaluation, what it charges, and whether a private registered professional is required.",
+                    "7. The current Permit to Install application fee for this county and project type.",
                     "",
                     "I understand this request is for a scope and price estimate, not a guarantee that the parcel or a particular system will be approved."
                 ];

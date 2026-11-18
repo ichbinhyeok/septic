@@ -74,7 +74,7 @@ public class SitemapService {
             Map.entry("/onlinerme-septic-records/", "2026-11-18"),
             Map.entry("/texas-ossf-records-search/", "2026-11-05"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-10-11"),
-            Map.entry("/dhec-septic-permit-lookup/", "2026-10-21"),
+            Map.entry("/dhec-septic-permit-lookup/", "2026-11-18"),
             Map.entry("/septic-as-built-records/", "2026-11-18"),
             Map.entry("/septic-tank-location-records/", "2026-11-18"),
             Map.entry("/how-to-find-septic-records-online/", "2026-11-05"),
@@ -90,7 +90,9 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/vermont/", "2026-10-21"),
             Map.entry("/septic-records-checklist/oregon/", "2026-10-21"),
             Map.entry("/septic-permit-process/tennessee/", "2026-10-01"),
-            Map.entry("/septic-system-cost-calculator/alabama/", "2026-10-01"),
+            Map.entry("/septic-system-cost-calculator/alabama/", "2026-11-18"),
+            Map.entry("/perc-test-cost/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/arizona/maricopa-county/", "2026-11-18"),
             Map.entry("/septic-records-checklist/north-carolina/alamance-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/forsyth-county/", "2026-09-22"),
             Map.entry("/septic-records-checklist/north-carolina/pender-county/", "2026-11-05"),
@@ -289,7 +291,11 @@ public class SitemapService {
     }
 
     private String statePageLastMod(StateProfile state) {
-        return latestValidDate(Stream.of(state.lastVerifiedAt(), SHARED_WORKFLOW_REVISION_DATE));
+        return latestValidDate(Stream.of(
+                state.lastVerifiedAt(),
+                SHARED_WORKFLOW_REVISION_DATE,
+                materialRevision("/septic-system-cost-calculator/" + state.slug() + "/")
+        ));
     }
 
     private String latestValidDate(Stream<String> dates) {
