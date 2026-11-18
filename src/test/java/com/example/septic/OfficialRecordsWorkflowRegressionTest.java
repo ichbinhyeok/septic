@@ -33,7 +33,7 @@ class OfficialRecordsWorkflowRegressionTest {
                 .andExpect(content().string(containsString("Open official TDEC file search")))
                 .andExpect(content().string(containsString("Viewer blocked or no match?")))
                 .andExpect(content().string(containsString("An access error or blank search does not mean there’s no record.")))
-                .andExpect(content().string(containsString("https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html")))
+                .andExpect(content().string(containsString("https://www.tn.gov/environment/about-tdec/dataviewers.html")))
                 .andExpect(content().string(containsString("https://tdec.tn.gov/document-viewer/search/stp")))
                 .andExpect(content().string(containsString("Independent research and explanation. Agency fees only with approval.")))
                 .andExpect(content().string(not(containsString("$29"))))

@@ -6,7 +6,7 @@
 
     const SESSION_KEY = "septicpath:tdec-route:v2";
     const TDEC_VIEWER = "https://tdec.tn.gov/document-viewer/search/stp";
-    const TDEC_VIEWERS_PAGE = "https://www.tn.gov/environment/about-tdec/tdec-dataviewers.html";
+    const TDEC_VIEWERS_PAGE = "https://www.tn.gov/environment/about-tdec/dataviewers.html";
     const TDEC_SERVICES = "https://www.tn.gov/environment/permits/water/septic-systems-permits/ssp/wr-sds-online-application-for-ground-water-protection-services.html";
     const TDEC_PUBLIC_RECORDS = "https://www.tn.gov/environment/contacts/public-records-request.html";
     const TPAD = "https://assessment.cot.tn.gov/TPAD";
