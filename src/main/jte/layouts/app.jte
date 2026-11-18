@@ -180,6 +180,7 @@
                 </ul></nav>
             </div>
             <div class="container footer-meta"><span>Independent research. Not an inspection or permitting authority.</span><nav aria-label="Legal"><a href="/privacy-policy/">Privacy</a><a href="/terms-of-use/">Terms</a><a href="/data-license/">Data license</a></nav><span>© SepticPath</span></div>
+            <div class="container footer-meta"><small>leadsmart-verify-irc44z</small></div>
         </footer>
     </div>
 </body>
