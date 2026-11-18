@@ -42,7 +42,7 @@ class SeoDepthExpansionRegressionTest {
 
     @Test void countyRecordStartsExposeTheLocalOfficeAndViewerFallback() throws Exception {
         assertThat(page("/septic-records-checklist/south-carolina/aiken-county/"))
-                .containsSubsequence("data-county-record-start", "tel:+18036421637", "Call SCDES for the existing permit");
+                .containsSubsequence("data-county-record-start", "tel:+18557312504", "Call SCDES for a permit copy");
         assertThat(page("/septic-records-checklist/tennessee/cumberland-county/"))
                 .containsSubsequence("data-county-record-start", "Open the TDEC septic records viewer",
                         "field-offices/cookeville.html", "county_records_start_alternate", "id=\"county-access-workflow\"");
