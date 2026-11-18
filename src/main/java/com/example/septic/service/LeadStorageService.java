@@ -400,7 +400,9 @@ public class LeadStorageService {
         payload.put("sourceContext", safeValue(form.getSourceContext(), 120));
         payload.put("attribution", orderedMap(
                 "entryPage", entryPage,
+                "entryChannel", form.getEntryChannelHint(),
                 "sourcePage", attributedSourcePage,
+                "ctaContext", form.getCtaContextHint(),
                 "sourceContext", safeValue(form.getSourceContext(), 120)
         ));
         payload.put("contact", orderedMap(
@@ -448,7 +450,9 @@ public class LeadStorageService {
                     "requestId", requestId,
                     "sourcePage", sourcePage,
                     "entryPage", entryPage,
+                    "entryChannel", form.getEntryChannelHint(),
                     "attributedSourcePage", attributedSourcePage,
+                    "ctaContext", form.getCtaContextHint(),
                     "sourceContext", safeValue(form.getSourceContext(), 120),
                     "stateCode", safeValue(form.getStateCode(), 2),
                     "recordType", safeValue(form.getRecordType(), 20),

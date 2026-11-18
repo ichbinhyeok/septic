@@ -2,6 +2,7 @@
 @import com.example.septic.data.model.StateMoneyPage
 @import com.example.septic.data.model.StateProfile
 @import com.example.septic.web.PageMeta
+@import com.example.septic.web.RecordHelpEntry
 @import com.example.septic.web.EditorialProfile
 @import com.example.septic.web.CountyWorkflowFieldView
 @import com.example.septic.web.StateMoneyPrimaryAction
@@ -44,16 +45,24 @@
 @param String editorialNote = ""
 @param com.example.septic.web.PercCostAnswer percCostAnswer = null
 
+!{boolean ohioRecords = "OH".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug());}
+
 @template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="state-money-page">
-    @if ("OH".equals(state.stateCode()) && "septic-records-checklist".equals(stateMoneyPage.contentSlug()))
+    @if (ohioRecords)
     <section class="section section--tight"><div class="container"><span class="eyebrow">Local search instructions</span><h2>Lake County, Ohio: find the address and its files.</h2><p>Start with the house number, then the street. <a href="/septic-records-checklist/ohio/lake-county/#record-search-instructions" data-track-click="nav" data-track-source-context="oh_lake_search_steps" data-track-target-type="county_records">See street-name variants and missing-file steps →</a></p></div></section>
     @endif
     <section class="section section--heroish state-money-hero-section">
         <div class="container state-hero">
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
-                <h1>${stateMoneyPage.title()}</h1>
+                @if (ohioRecords)
+                    <h1>Ohio septic permit lookup by county</h1>
+                    <p>Find the county health office, permit portal, or inspection map for your address. Request the original permit or layout when the online file is incomplete.</p>
+                    <p><a href="${RecordHelpEntry.of("missing").link(stateMoneyPage.path(state.slug()), "OH", null)}" data-record-help-cta data-track-click="nav" data-track-source-context="oh_state_missing_file_help" data-track-target-type="lead_form">Get help if the permit or layout is missing</a></p>
+                @else
+                    <h1>${stateMoneyPage.title()}</h1>
+                @endif
                 @if (percCostAnswer != null)
                     <section class="content-quick-answer" data-perc-cost-answer aria-labelledby="perc-cost-answer-heading">
                         <h2 id="perc-cost-answer-heading">${percCostAnswer.heading()}</h2>

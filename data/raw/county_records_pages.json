@@ -4876,6 +4876,9 @@
       "officeUrl": "https://www.thurstoncountywa.gov/media/13802",
       "recordsLabel": "Search Thurston historic septic permits",
       "recordsUrl": "https://weblink.co.thurston.wa.us/dspublic/customsearch.aspx?searchname=search",
+      "parcelAnchorLabel": "Find the parcel number by address",
+      "parcelAnchorUrl": "https://www.thurstoncountywa.gov/departments/geodata-center/look-property/quick-property-search-options",
+      "parcelAnchorNote": "Open the Property Information Report by address and copy the 11-digit tax parcel number for the permit search or drawing request.",
       "contactLine": "Thurston County ties time-of-transfer work, record drawings, septic sizing, and operational certificate duties into one local septic workflow.",
       "decisionSteps": [
         "Start with Thurston County's time-of-transfer page if the property is being sold because the county makes the report and pumping workflow explicit.",
@@ -4911,7 +4914,8 @@
       "officialSourceIds": [
         "wa_thurston_01",
         "wa_thurston_02",
-        "wa_thurston_03"
+        "wa_thurston_03",
+        "wa_thurston_parcel_20261119"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
@@ -4927,6 +4931,8 @@
         "malfunctionSignal": "If the transfer report, record drawing, or operating trail breaks down, the parcel is already closer to a deeper county review or repair lane than a routine closing lane.",
         "quoteGate": "Do not move into pricing until the transfer report, record drawing, and operational-certificate story all support the same path, because Thurston can widen from buyer diligence into recurring compliance fast."
       },
+      "updatedAt": "2026-11-19",
+      "reviewedAt": "2026-11-19",
       "publishStatus": "published"
     },
     {

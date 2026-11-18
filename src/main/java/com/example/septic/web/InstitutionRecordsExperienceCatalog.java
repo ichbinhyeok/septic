@@ -136,9 +136,9 @@ public final class InstitutionRecordsExperienceCatalog {
             );
             case "VT" -> new InstitutionRecordsExperience(
                     "VT", "Vermont DEC", "Wastewater System and Potable Water Supply Program",
-                    "Search the permit—and understand why it may not appear.",
-                    "We broaden the state search with town, street, owner, SPAN, and permit clues, then distinguish an online miss from an older, exempt, or locally held file.",
-                    "A defensible search trail and the right regional-office or town-file next step.",
+                    "Vermont wastewater permit search",
+                    "Search by permit number alone, or start with the town and part of the road or owner name. Open the ProjectID to see the available permit documents and plans.",
+                    "For older or missing records, check the town file or ask the Vermont DEC regional office.",
                     "https://anrweb.vt.gov/DEC/WWDocs/Default.aspx", "Open Vermont wastewater permit search",
                     "https://dec.vermont.gov/water/wastewater-systems-and-potable-water-supply-program/wastewater-systems-and-potable-water", "Open DEC missing-record guidance",
                     "Town", "Hartford", "SPAN or permit number", "SPAN, project ID, or permit number",

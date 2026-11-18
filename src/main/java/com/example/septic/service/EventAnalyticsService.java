@@ -2,7 +2,10 @@ package com.example.septic.service;
 
 import com.example.septic.config.AppStorageProperties;
 import com.example.septic.web.EventAnalyticsReport;
+import com.example.septic.web.EventAnalyticsReport.RequestAttributionRow;
+import com.example.septic.web.EventAnalyticsReport.StoredRecordHelpReport;
 import com.example.septic.web.EventAnalyticsRow;
+import com.example.septic.web.RecordHelpEntry;
 import com.example.septic.web.CountyWorkflowFunnelRow;
 import com.example.septic.web.WorkflowFunnelRow;
 import com.example.septic.web.WorkflowOutcomeRow;
@@ -13,16 +16,22 @@ import java.io.UncheckedIOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +39,7 @@ import org.springframework.stereotype.Service;
 public class EventAnalyticsService {
     private static final Duration REPORT_WINDOW = Duration.ofDays(28);
     private static final Duration SPRINT_WINDOW = Duration.ofDays(7);
+    private static final DateTimeFormatter REQUEST_DIRECTORY = DateTimeFormatter.ofPattern("uuuu/MM/dd");
     private static final DateTimeFormatter DISPLAY_TIME = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm 'UTC'")
             .withZone(ZoneOffset.UTC);
@@ -55,6 +65,74 @@ public class EventAnalyticsService {
             return report.toView(true);
         } catch (IOException | UncheckedIOException exception) {
             return report.toView(false);
+        }
+    }
+
+    public StoredRecordHelpReport storedRecordHelpReport() {
+        Path root = Path.of(storageProperties.root()).resolve("closing-risk-requests");
+        Instant now = Instant.now();
+        Instant start = now.minus(REPORT_WINDOW);
+        Map<AttributionKey, Long> counts = new HashMap<>();
+        Map<String, Long> channels = new TreeMap<>();
+        Set<String> requests = new HashSet<>();
+        boolean readable = Files.isDirectory(root);
+        LocalDate last = now.atOffset(ZoneOffset.UTC).toLocalDate();
+        for (LocalDate day = start.atOffset(ZoneOffset.UTC).toLocalDate(); !day.isAfter(last); day = day.plusDays(1)) {
+            Path folder = root.resolve(day.format(REQUEST_DIRECTORY));
+            if (Files.notExists(folder)) continue;
+            try (Stream<Path> paths = Files.list(folder)) {
+                for (Path file : paths.filter(path -> path.toString().endsWith(".json")
+                        && Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)).toList()) {
+                    try {
+                        JsonNode request = objectMapper.readTree(file.toFile());
+                        if (request == null || !request.isObject()) {
+                            readable = false;
+                            continue;
+                        }
+                        Instant submittedAt = Instant.parse(request.path("submittedAt").asText());
+                        String id = request.path("requestId").asText();
+                        if (id.isBlank()) {
+                            readable = false;
+                            continue;
+                        }
+                        if (submittedAt.isBefore(start) || !submittedAt.isBefore(now) || !requests.add(id)) continue;
+                        AttributionKey key = AttributionKey.from(request.path("attribution"));
+                        counts.merge(key, 1L, Long::sum);
+                        channels.merge(key.channel(), 1L, Long::sum);
+                    } catch (IOException | DateTimeParseException exception) {
+                        readable = false;
+                    }
+                }
+            } catch (IOException | UncheckedIOException exception) {
+                readable = false;
+            }
+        }
+        List<RequestAttributionRow> rows = counts.entrySet().stream()
+                .map(entry -> entry.getKey().row(entry.getValue()))
+                .sorted(Comparator.comparingLong(RequestAttributionRow::requests).reversed()
+                        .thenComparing(RequestAttributionRow::channel).thenComparing(RequestAttributionRow::entryPage)
+                        .thenComparing(RequestAttributionRow::sourcePage).thenComparing(RequestAttributionRow::ctaContext))
+                .toList();
+        return new StoredRecordHelpReport(readable, requests.size(), channels, rows);
+    }
+
+    private record AttributionKey(String channel, String entryPage, String sourcePage, String ctaContext) {
+        static AttributionKey from(JsonNode attribution) {
+            String context = RecordHelpEntry.safeCtaContext(attribution.path("ctaContext").asText());
+            return new AttributionKey(RecordHelpEntry.safeEntryChannel(attribution.path("entryChannel").asText()),
+                    reportPath(attribution.path("entryPage").asText()), reportPath(attribution.path("sourcePage").asText()),
+                    context.isBlank() ? "unknown" : context);
+        }
+
+        private static String reportPath(String value) {
+            String path = value.split("[?#]", 2)[0];
+            if (path.isBlank() || path.startsWith("/unlock/") || path.startsWith("/paid-unlock/")) return "unknown";
+            if (!path.endsWith("/")) path += "/";
+            return RecordHelpEntry.safeSourcePath(path) ? path : "unknown";
+        }
+
+        RequestAttributionRow row(long requests) {
+            return new RequestAttributionRow(channel, entryPage, sourcePage, ctaContext, requests);
         }
     }
 

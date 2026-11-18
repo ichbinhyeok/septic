@@ -66,6 +66,8 @@
             <input type="hidden" name="sourceContext" value="${closingRiskCheckForm.getSourceContextValue().isBlank() ? (production ? "direct" : "studio_intake") : closingRiskCheckForm.getSourceContextValue()}" data-record-help-source-context>
             <input type="hidden" name="sourcePageHint" value="${closingRiskCheckForm.getSourcePageHintValue()}" data-record-help-source-page>
             <input type="hidden" name="entryPageHint" value="${closingRiskCheckForm.getEntryPageHintValue()}" data-record-help-entry-page>
+            <input type="hidden" name="entryChannelHint" value="${closingRiskCheckForm.getEntryChannelHint()}" data-record-help-entry-channel>
+            <input type="hidden" name="ctaContextHint" value="${closingRiskCheckForm.getCtaContextHint()}" data-record-help-cta-context>
             <input type="hidden" name="recordType" value="septic">
             <div class="intake-fields">
                 <label class="intake-full" for="field-propertyAddress">Property address<input id="field-propertyAddress" name="propertyAddress" value="${closingRiskCheckForm.getPropertyAddressValue()}" autocomplete="street-address" placeholder="Street address, city and ZIP code" required minlength="8" maxlength="220"></label>

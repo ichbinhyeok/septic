@@ -1,6 +1,7 @@
 package com.example.septic.web;
 
 import java.util.List;
+import java.util.Map;
 
 public record EventAnalyticsReport(
         String generatedAt,
@@ -22,4 +23,10 @@ public record EventAnalyticsReport(
     public boolean hasTrackedActions() {
         return trackedActionsLastTwentyEightDays > 0;
     }
+
+    public record StoredRecordHelpReport(boolean readable, long requests, Map<String, Long> channels,
+                                         List<RequestAttributionRow> rows) {}
+
+    public record RequestAttributionRow(String channel, String entryPage, String sourcePage,
+                                        String ctaContext, long requests) {}
 }

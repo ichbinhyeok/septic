@@ -71,6 +71,17 @@ public record RecordHelpEntry(String intent, String title, String description, S
         return path != null && path.length() <= 240 && path.matches("/(?:[a-z0-9-]+/)*");
     }
 
+    public static String safeEntryChannel(String value) {
+        return switch (value == null ? "" : value) {
+            case "google_search", "bing_search", "other_search", "paid_search", "campaign", "referral", "direct_or_unattributed" -> value;
+            default -> "unknown";
+        };
+    }
+
+    public static String safeCtaContext(String value) {
+        return value != null && value.length() <= 120 && value.matches("[a-z0-9_-]+") ? value : "";
+    }
+
     private static String encode(String value) {
         return URLEncoder.encode(value, StandardCharsets.UTF_8).replace("+", "%20");
     }

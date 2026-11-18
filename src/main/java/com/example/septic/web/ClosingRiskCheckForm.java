@@ -86,6 +86,9 @@ public class ClosingRiskCheckForm {
     @Size(max = 240, message = "Entry page must be 240 characters or fewer.")
     private String entryPageHint;
 
+    private String entryChannelHint = "unknown";
+    private String ctaContextHint = "";
+
     @Size(max = 1200, message = "Keep additional details to 1,200 characters or fewer.")
     private String concern;
 
@@ -169,6 +172,10 @@ public class ClosingRiskCheckForm {
     public void setSourcePageHint(String sourcePageHint) { this.sourcePageHint = sourcePageHint; }
     public String getEntryPageHint() { return entryPageHint; }
     public void setEntryPageHint(String entryPageHint) { this.entryPageHint = entryPageHint; }
+    public String getEntryChannelHint() { return entryChannelHint; }
+    public void setEntryChannelHint(String value) { entryChannelHint = RecordHelpEntry.safeEntryChannel(value); }
+    public String getCtaContextHint() { return ctaContextHint; }
+    public void setCtaContextHint(String value) { ctaContextHint = RecordHelpEntry.safeCtaContext(value); }
     public String getConcern() { return concern; }
     public void setConcern(String concern) { this.concern = concern; }
     public List<MultipartFile> getDocuments() { return documents == null ? List.of() : documents; }

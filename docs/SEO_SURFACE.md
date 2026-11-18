@@ -54,6 +54,17 @@ Useful state routes that have not yet earned enough search demand remain availab
 - sitemap inclusion and page-level robots directives share the same publishing policy
 - regression coverage checks sitemap and robots-policy alignment across every published state guide and state money page
 
+## County Template Audit
+
+Run the read-only comparison against production or a preview with a matching site origin.
+
+```sh
+python -m pip install beautifulsoup4 requests rapidfuzz==3.14.6
+python tools/audit-county-copy.py https://septicpath.com build/reports/county-copy-audit.json
+```
+
+The audit reads `sitemap-county.xml` and compares county pages within each state. It normalizes each page's own county name and reports paragraph similarity separately for the main content and the expandable county evidence section. The report includes recurring evidence paragraphs and the URLs of links tagged as official sources. Use these alongside the page to decide which copy to shorten and which local steps to keep. A similarity score is an editorial signal. An unreadable or invalid sitemap page is recorded as an error and makes the command exit nonzero.
+
 ## Next SEO Tasks
 
 - monitor indexed-versus-submitted movement and reopen state cohorts only when Search Console demand or stronger first-party evidence supports it

@@ -8,7 +8,6 @@
 @import com.example.septic.web.CountyRecordStartView
 @import com.example.septic.web.CountyAcquisitionProfileView
 @import com.example.septic.web.CountyWorkflowStructureView
-@import com.example.septic.web.CountyWorkflowFieldView
 @import com.example.septic.web.CountyIntentRouteView
 @import com.example.septic.web.CountyLocalContentView
 @import com.example.septic.web.CountyRequestBuilderOptionView
@@ -32,7 +31,6 @@
 @param java.util.List<CountyIntentRouteView> countyIntentRoutes = java.util.List.of()
 @param java.util.List<CountyRequestBuilderOptionView> countyRequestOptions = java.util.List.of()
 @param CountySearchResponseView countySearchResponse = null
-@param java.util.List<CountyWorkflowFieldView> countyOfficialFilePathRows = java.util.List.of()
 @param java.util.List<PageLink> internalLinks = java.util.List.of()
 @param java.util.List<PageLink> featuredInternalLinks = java.util.List.of()
 @param java.util.List<com.example.septic.web.CountyFinderLinkView> siblingCountyRoutes = java.util.List.of()
@@ -49,6 +47,9 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 
+!{boolean thurstonDrawingSearch = "WA::thurston-county".equals(countyPage.key()) && countyPage.hasParcelAnchor()
+        && !countyRecordStart.alternateUrl().isBlank();}
+
 @template.layouts.app(page = page, designFamily = "signature", content = @`
     <link rel="stylesheet" href="${AssetPaths.versioned("/premium-county.css")}">
     <link rel="stylesheet" href="${AssetPaths.versioned("/premium-records-lower.css")}">
@@ -63,11 +64,21 @@
             @endif
         </div>
         <div class="county-record-start__route">
-            <p class="county-record-start__identifiers"><strong>Have ready</strong> ${countyRecordStart.identifiers()}</p>
-            @if (!countyRecordStart.note().isBlank())
-                <p class="county-record-start__note">${countyRecordStart.note()}</p>
+            @if (thurstonDrawingSearch)
+                <p class="county-record-start__identifiers"><strong>Find the filed septic drawing</strong>Use your street address to get the 11-digit tax parcel number. If you already have it, start with the permit search.</p>
+                <ol class="county-record-start__steps">
+                    <li><a href="${countyPage.parcelAnchorUrl()}" target="_blank" rel="noreferrer" data-track-click="nav" data-track-source-context="thurston_as_built_parcel" data-track-target-type="official_source">${countyPage.parcelAnchorLabel()}</a></li>
+                    <li><a href="${countyRecordStart.officialUrl()}" target="_blank" rel="noreferrer" data-county-record-start-official data-record-official-link data-track-click="nav" data-track-source-context="county_records_premium_official" data-track-target-type="official_source">${countyRecordStart.officialLabel()}</a></li>
+                    <li><a href="${countyRecordStart.alternateUrl()}" target="_blank" rel="noreferrer" data-record-official-link data-track-click="nav" data-track-source-context="county_records_start_alternate" data-track-target-type="official_source">${countyRecordStart.alternateLabel()}</a> if the archive has no drawing.</li>
+                </ol>
+            @else
+                <p class="county-record-start__identifiers"><strong>Have ready</strong> ${countyRecordStart.identifiers()}</p>
+                @if (!countyRecordStart.note().isBlank())
+                    <p class="county-record-start__note">${countyRecordStart.note()}</p>
+                @endif
             @endif
             <div class="county-record-start__actions">
+                @if (!thurstonDrawingSearch)
                 <a class="button button--primary"
                    href="${countyRecordStart.officialUrl()}"
                    target="${countyRecordStart.opensNewWindow() ? "_blank" : null}"
@@ -84,6 +95,7 @@
                        data-track-click="nav"
                        data-track-source-context="county_records_start_alternate"
                        data-track-target-type="official_source">${countyRecordStart.alternateLabel()}</a>
+                @endif
                 @endif
                 <a class="county-record-start__help"
                    href="${RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())}"
@@ -1304,9 +1316,7 @@
         <div class="container">
             <details class="state-money-disclosure county-research-disclosure">
                 <summary>
-                    <span class="eyebrow">County evidence</span>
-                    <strong>File details, access method, and source checks</strong>
-                    <span>Open only when you need the full local evidence behind the official route above.</span>
+                    <strong>Document types and request links</strong>
                 </summary>
                 <div class="county-research-disclosure__content">
 
@@ -1350,29 +1360,14 @@
         </section>
     @endif
 
-    @if (!countyOfficialFilePathRows.isEmpty())
         <section class="section section--tight">
             <div class="container">
-                <div class="county-response-dossier" aria-label="${countyPage.countyName()} official county file path">
+                <div class="county-response-dossier">
                     <div class="county-response-dossier__intro">
-                        <span class="eyebrow">Official county file path</span>
-                        <h2>Use this ${countyPage.countyName()} file path before another broad search.</h2>
-                        <p>${countyPage.countyName()} uses this table as a work surface: identify the file owner, carry the right property clue, request the first useful artifact, and preserve a written fallback when the lookup has no result.</p>
-                        <div class="county-response-dossier__queries" aria-label="County file path signals">
-                            <span>File owner</span>
-                            <span>First artifact</span>
-                            <span>Request method</span>
-                            <span>No-record fallback</span>
-                        </div>
-                    </div>
-
-                    <div class="county-response-dossier__rows" role="list" aria-label="Official county file path rows">
-                        @for (var row : countyOfficialFilePathRows)
-                            <article role="listitem">
-                                <span>${row.label()}</span>
-                                <p>${row.value()}</p>
-                            </article>
-                        @endfor
+                        <h2>Official county file path</h2>
+                        @if (countyAccessProfile != null && !countyAccessProfile.countySpecific())
+                            <p>If you find no match, ask the records office to confirm who holds the file for your parcel.</p>
+                        @endif
                     </div>
 
                     <div class="county-response-dossier__actions" aria-label="${countyPage.countyName()} official file path actions">
@@ -1412,7 +1407,6 @@
                 </div>
             </div>
         </section>
-    @endif
 
     @if (countyAvailabilitySummary != null && !countyAvailabilityRows.isEmpty())
         <section class="section section--tight">
@@ -1786,7 +1780,6 @@
                                    data-track-click="nav"
                                    data-track-source-context="county_records_related_link"
                                    data-track-target-type="related_internal">${link.title()}</a>
-                                <p class="detail-list__note">${countyPage.countyName()}: ${link.note()}</p>
                             </li>
                         @endfor
                         @if (internalLinks.size() > 6)
@@ -1840,12 +1833,12 @@
                    data-track-target-type="internal_tool">Prepare for the county step</a>
             @else
                 <a class="button button--primary"
-                   href="${countyPage.recordsUrl()}"
-                   target="_blank"
-                   rel="noreferrer"
+                   href="${countyRecordStart.officialUrl()}"
+                   target="${countyRecordStart.opensNewWindow() ? "_blank" : null}"
+                   rel="${countyRecordStart.opensNewWindow() ? "noreferrer" : null}"
                    data-track-click="nav"
                    data-track-source-context="county_records_sticky_records"
-                   data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
+                   data-track-target-type="official_source">${countyRecordStart.officialLabel()}</a>
             @endif
         </div>
     </section>

@@ -16924,7 +16924,7 @@
         },
         {
           "question": "Does Vermont have a septic permit lookup?",
-          "answer": "Use the Vermont records lookup path to find the permit search, county file owner, or official office that can confirm the permit, as-built, inspection, or repair record before quotes."
+          "answer": "Yes. Open the Vermont DEC wastewater permit search. If you know the permit number, search with that number alone. If the file does not appear, check the town or DEC regional office for older records."
         }
       ],
       "internalLinkTargets": [
@@ -16946,8 +16946,8 @@
         "vt_05"
       ],
       "calculatorProjectType": "buying_home",
-      "updatedAt": "2026-10-01",
-      "reviewedAt": "2026-10-01",
+      "updatedAt": "2026-11-19",
+      "reviewedAt": "2026-11-19",
       "publishStatus": "published"
     },
     {

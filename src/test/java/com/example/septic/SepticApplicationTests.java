@@ -2694,7 +2694,7 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Official county file path")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open county record path")))
 				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("Tarrant County County"))))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("No-record fallback")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open official Public Information Act instructions")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open records request wording")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Texas records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Texas guide")));
@@ -7829,7 +7829,7 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/septic-records-checklist/vermont/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Vermont Wastewater Permit Search by Town, SPAN &amp; Owner")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search the permit—and understand why it may not appear")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<h1 id=\"institution-title\">Vermont wastewater permit search</h1>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("microfilm")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("data-institution-form")));
 	}
@@ -9498,7 +9498,7 @@ class SepticApplicationTests {
 	void ohioRecordsChecklistPageRenders() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/ohio/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Ohio Septic Records Checklist")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<h1>Ohio septic permit lookup by county</h1>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Ohio")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("operation permit")))
