@@ -4,9 +4,11 @@
     const storageKey = "septicpath_public_route_share_v1";
     const lifetime = 30 * 60 * 1000;
     const shareSourcePaths = new Set([
-        "/", "/septic-record-finder/", "/septic-permit-lookup/", "/septic-permit-search-by-address/",
+        "/", "/septic-record-finder/", "/embed/septic-record-finder/", "/septic-permit-search-by-address/",
         "/septic-records-by-county/", "/septic-as-built-records/", "/septic-tank-location-records/",
-        "/how-to-find-septic-records-online/", "/tdec-septic-records/", "/dhec-septic-records/"
+        "/how-to-find-septic-records-online/", "/tdec-septic-records/", "/dhec-septic-permit-lookup/",
+        "/north-carolina-septic-permit-lookup/", "/texas-ossf-records-search/",
+        "/florida-ostds-permit-lookup/", "/onlinerme-septic-records/"
     ]);
     const states = new Set("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY DC".split(" "));
     const filters = {
