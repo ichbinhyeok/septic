@@ -32,6 +32,22 @@ class CaseResearchGuidesTest {
             assertThat(mvc.perform(get("/images/guides/" + guide.image())).andReturn().getResponse().getStatus()).isEqualTo(200);
         }
     }
+    @Test void aduGuideIsIndexableAndOffersProjectSpecificRecordRoutes() throws Exception {
+        String path = "/adu-septic-permit/";
+        assertThat(html(path)).contains(
+                "href=\"https://example.test/adu-septic-permit/\"",
+                "content=\"index,follow\"",
+                "data-address-record-finder-api=\"/api/address-record-finder\"",
+                "data-adu-project-route=\"conversion\"",
+                "data-adu-project-route=\"detached\"",
+                "If Raleigh handles the permit",
+                "intent=building&amp;source=%2Fadu-septic-permit%2F"
+        );
+        assertThat(html("/sitemap.xml"))
+                .contains("<loc>https://example.test/adu-septic-permit/</loc><lastmod>2026-11-19</lastmod>");
+        assertThat(html("/septic-permit-process/")).contains("href=\"" + path + "\"");
+    }
+
     @Test void examplesDoNotTurnMissingEvidenceIntoApprovalOrFailure() throws Exception {
         assertThat(html("/septic-repair-records/")).contains("Neither gap proves", "historical repair", "completion evidence");
         assertThat(html("/septic-records-before-pool/")).contains("210 feet", "200 feet", "separate 50-foot", "not a pool siting approval");

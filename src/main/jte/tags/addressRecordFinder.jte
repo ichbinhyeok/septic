@@ -8,6 +8,7 @@
 @param boolean pageHeading = false
 @param boolean minimal = false
 @param boolean addressNextSteps = false
+@param boolean aduProject = false
 @param String expectedStateCode = ""
 
 <div id="${finderId}" class="record-finder ${compact ? "record-finder--embedded" : ""} ${minimal ? "record-finder--minimal" : ""}">
@@ -95,7 +96,9 @@
     <div class="record-finder__workspace" data-address-record-finder data-address-record-finder-api="/api/address-record-finder" data-address-record-finder-state="${expectedStateCode}">
         @if (minimal && !addressNextSteps)
             <div class="record-finder__minimal-intro">
-                <span class="eyebrow">${eyebrow}</span>
+                @if (!eyebrow.isBlank())
+                    <span class="eyebrow">${eyebrow}</span>
+                @endif
                 <h2>${heading}</h2>
                 <p>${intro}</p>
             </div>
@@ -133,10 +136,18 @@
         <form class="record-finder__form"
               id="${finderId}-form"
               name="address-record-finder"
-              hidden="${addressNextSteps}"
+              hidden="${addressNextSteps || aduProject}"
               data-address-record-finder-form>
             <div class="record-finder__form-fields">
-                @if (!addressNextSteps)
+                @if (aduProject)
+                    <label class="record-finder__field" for="${finderId}-project">
+                        <span>What are you planning?</span>
+                        <select id="${finderId}-project" data-adu-project>
+                            <option value="conversion">Convert a garage or existing space</option>
+                            <option value="detached">Build a new detached ADU</option>
+                        </select>
+                    </label>
+                @elseif (!addressNextSteps)
                 <label class="record-finder__field" for="${finderId}-purpose">
                     <span>What do you need?</span>
                     <select id="${finderId}-purpose" name="purpose" data-address-record-finder-purpose>
@@ -164,7 +175,7 @@
                                maxlength="180"
                                required
                                data-address-record-finder-input>
-                        <button class="button button--primary" type="submit" data-address-record-finder-submit>${addressNextSteps ? "Find the permit route" : "Find septic records"}</button>
+                        <button class="button button--primary" type="submit" data-address-record-finder-submit>${addressNextSteps || aduProject ? "Find the permit route" : "Find septic records"}</button>
                     </div>
                 </div>
                 @if (!minimal)
@@ -189,6 +200,8 @@
         </form>
         @if (addressNextSteps)
             <noscript><p>For a manual lookup, <a href="#address-search-state-routes">browse the state routes</a> or <a href="#septic-permit-search-by-address-county-finder">choose the county</a>.</p></noscript>
+        @elseif (aduProject)
+            <noscript><p><a href="/septic-records-by-county/">Choose your county to find the official septic records route</a>.</p></noscript>
         @endif
         @if (pageHeading)
             <div class="record-finder__document-entry">
@@ -211,6 +224,24 @@
             <p data-address-record-finder-message></p>
             <div class="record-finder__result-meta" data-address-record-finder-meta hidden></div>
             <div class="record-finder__result-actions" data-address-record-finder-actions></div>
+            @if (aduProject)
+                <div class="record-finder__address-next" data-adu-route hidden>
+                    <div data-adu-project-route="conversion">
+                        <h4>Converting an existing space</h4>
+                        <p>Bring the septic permit and current and proposed floor plans to the local reviewer. Ask whether the added dwelling changes the approved use or design flow and which approval is required.</p>
+                    </div>
+                    <div data-adu-project-route="detached" hidden>
+                        <h4>Building a detached ADU</h4>
+                        <p>Find the installed layout and any reserve area. Mark the proposed ADU and connection on a site plan, then ask which review applies to sharing, expanding or installing a separate system.</p>
+                    </div>
+                    <div data-adu-wake-route hidden>
+                        <h4>Wake County, North Carolina</h4>
+                        <p>First <a href="https://raleighnc.gov/planning/services/annexations/extraterritorial-jurisdiction-etj">check the parcel's planning jurisdiction</a>. If Raleigh handles the permit and the parcel uses private septic, get Wake County Environmental Services approval before applying to the city.</p>
+                        <a href="https://raleighnc.gov/permits/services/building-accessory-dwelling-unit-adu/adu-change-use" data-adu-city-route="conversion" data-track-click="nav" data-track-source-context="adu_septic_result" data-track-target-type="official_source">Open Raleigh's ADU change-of-use steps</a>
+                        <a href="https://raleighnc.gov/permits/services/building-new-single-family-dwelling-or-duplex" data-adu-city-route="detached" data-track-click="nav" data-track-source-context="adu_septic_result" data-track-target-type="official_source" hidden>Open Raleigh's detached ADU steps</a>
+                    </div>
+                </div>
+            @endif
             @if (addressNextSteps)
                 <div class="record-finder__address-next" data-address-next-steps hidden>
                     <details data-address-drawing-request>
@@ -226,7 +257,11 @@
             @endif
             <div class="record-finder__document-entry">
                 <div><strong>A route is only the starting point.</strong><span>Want help getting the actual file or understanding what it says? Ask us to continue from your saved property details.</span></div>
-                <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("missing").link(addressNextSteps ? "/septic-permit-search-by-address/" : "/septic-record-finder/")}" data-record-help-cta data-track-source-context="${addressNextSteps ? "national_address_search_result" : "record_finder_result"}">Get help with this property</a>
+                @if (aduProject)
+                    <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("building").link("/adu-septic-permit/")}" data-record-help-cta data-track-source-context="adu_septic_result">Get help with my project records</a>
+                @else
+                    <a class="button button--secondary" href="${com.example.septic.web.RecordHelpEntry.of("missing").link(addressNextSteps ? "/septic-permit-search-by-address/" : "/septic-record-finder/")}" data-record-help-cta data-track-source-context="${addressNextSteps ? "national_address_search_result" : "record_finder_result"}">Get help with this property</a>
+                @endif
             </div>
             <div class="record-finder__search-packet" data-record-search-packet hidden>
                 <div>

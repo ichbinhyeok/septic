@@ -52,6 +52,7 @@ public class SitemapService {
             Map.entry("/septic-record-brief-example/williamson/", "2026-10-11"),
             Map.entry("/septic-repair-records/", "2026-10-11"),
             Map.entry("/septic-records-before-pool/", "2026-10-11"),
+            Map.entry("/adu-septic-permit/", "2026-11-19"),
             Map.entry("/septic-final-approval-records/", "2026-10-11"),
             Map.entry("/septic-records-checklist/texas/hays-county/", "2026-10-11"),
             Map.entry("/septic-records-checklist/north-carolina/iredell-county/", "2026-10-11"),

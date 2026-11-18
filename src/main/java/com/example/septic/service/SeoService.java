@@ -957,6 +957,7 @@ public class SeoService {
                 "/septic-record-brief-example/williamson/",
                 "/septic-repair-records/",
                 "/septic-records-before-pool/",
+                "/adu-septic-permit/",
                 "/septic-final-approval-records/",
                 "/septic-bedroom-permit-checker/"
         );
