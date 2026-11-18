@@ -31,6 +31,11 @@ public class SitemapService {
      * cosmetic or narrowly scoped release look like a sitewide content update.
      */
     private static final Map<String, String> MATERIAL_PAGE_REVISIONS = Map.ofEntries(
+            Map.entry("/septic-records-checklist/ohio/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/ohio/lake-county/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/north-carolina/henderson-county/", "2026-11-18"),
+            Map.entry("/perc-test-cost/oregon/", "2026-11-18"),
+            Map.entry("/perc-test-cost/south-carolina/", "2026-11-18"),
             Map.entry("/septic-records-checklist/michigan/livingston-county/", "2026-11-18"),
             Map.entry("/septic-records-checklist/virginia/prince-william-county/", "2026-11-18"),
             Map.entry("/septic-records-checklist/illinois/", "2026-11-18"),
@@ -53,7 +58,7 @@ public class SitemapService {
             Map.entry("/official-septic-lookup-tools/", "2026-10-11"),
             Map.entry("/tdec-septic-records/", "2026-11-18"),
             Map.entry("/no-septic-records-found/", "2026-10-11"),
-            Map.entry("/how-to-read-septic-as-built/", "2026-10-11"),
+            Map.entry("/how-to-read-septic-as-built/", "2026-11-18"),
             Map.entry("/septic-bedroom-permit-checker/", "2026-10-11"),
             Map.entry("/septic-records-checklist/tennessee/davidson-county/", "2026-10-11"),
             Map.entry("/septic-records-checklist/tennessee/", "2026-10-05"),
@@ -65,12 +70,12 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/virginia/", "2026-10-21"),
             Map.entry("/septic-records-checklist/indiana/", "2026-11-18"),
             Map.entry("/septic-records-checklist/north-carolina/guilford-county/", "2026-10-05"),
-            Map.entry("/north-carolina-septic-permit-lookup/", "2026-11-05"),
-            Map.entry("/onlinerme-septic-records/", "2026-11-05"),
+            Map.entry("/north-carolina-septic-permit-lookup/", "2026-11-18"),
+            Map.entry("/onlinerme-septic-records/", "2026-11-18"),
             Map.entry("/texas-ossf-records-search/", "2026-11-05"),
             Map.entry("/florida-ostds-permit-lookup/", "2026-10-11"),
             Map.entry("/dhec-septic-permit-lookup/", "2026-10-21"),
-            Map.entry("/septic-as-built-records/", "2026-10-11"),
+            Map.entry("/septic-as-built-records/", "2026-11-18"),
             Map.entry("/septic-tank-location-records/", "2026-11-18"),
             Map.entry("/how-to-find-septic-records-online/", "2026-11-05"),
             Map.entry("/septic-permit-search-by-address/", "2026-11-05"),
@@ -81,7 +86,7 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/alabama/morgan-county/", "2026-10-11"),
             Map.entry("/septic-records-checklist/wisconsin/st-croix-county/", "2026-10-11"),
             Map.entry("/septic-records-checklist/washington/king-county/", "2026-10-11"),
-            Map.entry("/septic-records-checklist/new-hampshire/", "2026-10-21"),
+            Map.entry("/septic-records-checklist/new-hampshire/", "2026-11-18"),
             Map.entry("/septic-records-checklist/vermont/", "2026-10-21"),
             Map.entry("/septic-records-checklist/oregon/", "2026-10-21"),
             Map.entry("/septic-permit-process/tennessee/", "2026-10-01"),
@@ -191,11 +196,19 @@ public class SitemapService {
     private String renderUrlSet(List<SitemapEntry> entries) {
         StringBuilder xml = new StringBuilder();
         xml.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-        xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n");
+        xml.append("<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\">\n");
         for (SitemapEntry entry : entries.stream().distinct().sorted((left, right) -> left.url().compareTo(right.url())).toList()) {
             xml.append("  <url><loc>").append(entry.url()).append("</loc>");
             if (entry.lastMod() != null && !entry.lastMod().isBlank()) {
                 xml.append("<lastmod>").append(entry.lastMod()).append("</lastmod>");
+            }
+            for (String pagePath : List.of("/septic-as-built-records/", "/how-to-read-septic-as-built/")) {
+                if (entry.url().endsWith(pagePath)) {
+                    String origin = entry.url().substring(0, entry.url().length() - pagePath.length());
+                    xml.append("<image:image><image:loc>").append(origin)
+                            .append("/images/guides/septic-as-built-dimensions-explained.webp")
+                            .append("</image:loc></image:image>");
+                }
             }
             xml.append("</url>\n");
         }

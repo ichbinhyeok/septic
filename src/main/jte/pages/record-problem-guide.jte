@@ -57,6 +57,7 @@
                     <p>In our published Tennessee example, those lengths come from the sketch. The 900-gallon tank and three-bedroom design come from the accompanying permit. We explain each fact with its source rather than measuring the picture.</p>
                     <a href="/septic-as-built-records/#drawing-labels" data-track-click="nav" data-track-source-context="reading_original_example" data-track-target-type="case_study">Open the actual historical sketch and its explanation →</a>
                 </div>
+                @template.tags.drawingDimensions(sourceContext = "reading_dimension_image")
                 @template.tags.recordStageComparison()
                 @template.tags.workStorySpotlight(slug = "davidson", sourcePath = sourcePath)
                 <section><h2>Check the property and the component.</h2><p>In a reviewed Iredell County search, linked documents referred to a neighboring property. A nearby map result is not a property match: compare the street, parcel, lot and drawing before using the file.</p><p>In a separate Stark County file, a 2,100-gallon figure described each absorption well, not the septic tank. Keep tank, pump chamber and disposal components separate when reading capacity.</p></section>

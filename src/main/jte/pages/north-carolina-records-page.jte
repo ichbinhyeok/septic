@@ -63,6 +63,7 @@
                     @endif
                 </div>
             </section>
+        <section class="section section--tight"><div class="container"><h2>Searching Henderson County?</h2><p>The current portal and legacy archive use different owner-name formats. <a href="/septic-records-checklist/north-carolina/henderson-county/#record-search-instructions" data-track-click="nav" data-track-source-context="nc_henderson_search_steps" data-track-target-type="county_records">Follow the Henderson County permit and attachment steps →</a></p></div></section>
         @endif
 
         <section class="tdec-workspace" id="nc-record-search" aria-labelledby="nc-workspace-title">

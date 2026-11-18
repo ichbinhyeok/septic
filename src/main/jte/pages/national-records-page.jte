@@ -105,7 +105,7 @@
         </div>
 
         @if ("septic-as-built-records".equals(contentPage.slug()))
-            <div class="container">@template.tags.recordStageComparison()<p><a href="/how-to-read-septic-as-built/">Read tank, line-length and approval labels step by step →</a></p></div>
+            <div class="container">@template.tags.drawingDimensions()@template.tags.recordStageComparison()<p><a href="/how-to-read-septic-as-built/">Read tank, line-length and approval labels step by step →</a></p></div>
         @endif
         @if ("septic-as-built-records".equals(contentPage.slug()))
         <div class="container">@template.tags.workStorySpotlight(slug = "davidson", sourcePath = "/septic-as-built-records/")</div>

@@ -109,6 +109,9 @@
         </div>
     </section>
 
+    @if ("NH".equals(state.stateCode()))
+        @template.tags.platformRecovery(platform = "NH")
+    @endif
     <section class="institution-break" aria-labelledby="institution-break-title">
         <div class="container institution-break__layout">
             <div><p class="institution-overline">When the easy search breaks</p><h2 id="institution-break-title">No result is<br>not one conclusion.</h2></div>

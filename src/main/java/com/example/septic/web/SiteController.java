@@ -3292,6 +3292,10 @@ The goal is to settle the permit path before we frame the project as a normal in
             model.addAttribute("totalCountyRouteCount", totalCountyRouteCount());
             return "pages/state-records-page";
         }
+        if ("perc-test-cost".equals(stateMoneyPage.contentSlug())
+                && Set.of("SC", "OR").contains(state.stateCode())) {
+            return "pages/regional-perc-cost";
+        }
         return "pages/state-money-page";
     }
 
