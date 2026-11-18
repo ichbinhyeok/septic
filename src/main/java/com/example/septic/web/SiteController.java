@@ -2787,7 +2787,9 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         model.addAttribute("page", seoService.countyRecordsPage(countyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("countyPage", countyPage);
-        model.addAttribute("countySearchGuide", countySearchGuide(countyPage));
+        CountySearchGuideView countySearchGuide = countySearchGuide(countyPage);
+        model.addAttribute("countySearchGuide", countySearchGuide);
+        model.addAttribute("countyRecordStart", CountyRecordStartView.from(countyAccessProfile, countySearchGuide));
         model.addAttribute("countyAccessProfile", countyAccessProfile);
         model.addAttribute("countyAcquisitionProfile", countyAcquisitionProfile);
         model.addAttribute("countyLocalContent", countyLocalContent);

@@ -34,12 +34,13 @@
 .fl-records-desk .tdec-outcomes__list summary { padding: 26px 0; font-size: 18px; }
 .fl-records-desk .tdec-reference { padding-block: 44px; }
 .county-records-page .county-access-workflow { padding: 0; border-radius: 0; }
-.county-records-page .county-access-workflow__layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 42px 64px; padding-top: 36px; }
+.county-records-page .county-access-workflow__layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px 44px; padding-top: 16px; }
 .county-records-page .county-access-workflow__case { padding: 32px; color: #173c43; background: #f5f9f5; border-radius: 16px; }
 .county-records-page .county-access-workflow__case h3 { color: #10383d; font-size: 26px; margin: 12px 0; }
 .county-records-page .county-access-workflow__case p { color: #506b6e; }
 .county-records-page .county-access-workflow__case .county-access-workflow__step { color: #087666; }
 .county-records-page .county-access-workflow__case label { display: grid; gap: 8px; margin-top: 20px; font-weight: 650; }
+.county-records-page .county-access-workflow__case > label:first-child { margin-top: 0; }
 .county-records-page .county-access-workflow__case input { width: 100%; color: #10383d; background: #fff; }
 .county-records-page .county-access-workflow__case button { margin-top: 20px; color: #fff; background: #087666; border-color: #087666; }
 .county-records-page .county-access-workflow__plan { padding-top: 14px; }
@@ -60,7 +61,7 @@
 }
 @media(max-width:480px) {
   .fl-records-desk .tdec-workspace__field-grid { grid-template-columns: 1fr; }
-  .county-records-page .county-access-workflow__case { padding: 24px 20px; }
+  .county-records-page .county-access-workflow__case { padding: 16px; }
   :is(.fl-records-desk,.county-records-page) .record-evidence__brief { grid-template-columns: 1fr; }
   :is(.fl-records-desk,.county-records-page) .record-evidence__brief > a:first-of-type { grid-row: auto; }
 }
