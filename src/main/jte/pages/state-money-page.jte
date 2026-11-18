@@ -42,6 +42,7 @@
 @param String editorialReviewedAgainst = ""
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
+@param com.example.septic.web.PercCostAnswer percCostAnswer = null
 
 @template.layouts.app(page = page, designFamily = "editorial", content = @`
     <div class="state-money-page">
@@ -53,6 +54,13 @@
             <div>
                 <span class="eyebrow">${state.stateCode()} homeowner guide</span>
                 <h1>${stateMoneyPage.title()}</h1>
+                @if (percCostAnswer != null)
+                    <section class="content-quick-answer" data-perc-cost-answer aria-labelledby="perc-cost-answer-heading">
+                        <h2 id="perc-cost-answer-heading">${percCostAnswer.heading()}</h2>
+                        <p>${percCostAnswer.answer()}</p>
+                        <a href="${percCostAnswer.sourceUrl()}" data-track-click="nav" data-track-source-context="state_perc_cost_answer" data-track-target-type="official_source">${percCostAnswer.sourceLabel()}</a>
+                    </section>
+                @endif
                 @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && java.util.Set.of("WV", "IL").contains(state.stateCode()))
                     <p>Start with the address, even if you have no permit or drawing. We’ll look for the existing file and explain what we find, free.</p>
                     <p><a class="button button--primary" href="${com.example.septic.web.RecordHelpEntry.of("records").link(stateMoneyPage.path(state.slug()), state.stateCode(), null)}" data-record-help-cta data-track-click="nav" data-track-source-context="state_records_free_help" data-track-target-type="lead_form">Get free record help →</a></p>
@@ -82,6 +90,9 @@
                             <p class="hero-county-picker__status" data-county-route-status aria-live="polite">Select a county to stay on SepticPath and open its local permit-record workflow.</p>
                         </form>
                     </div>
+                @endif
+                @if (percCostAnswer != null)
+                    <details class="state-review-disclosure"><summary>Permit records and local review</summary>
                 @endif
                 <div class="workflow-console" aria-label="Septic workflow triage console">
                     <div class="workflow-console__topbar">
@@ -180,6 +191,9 @@
                         </div>
                     </div>
                 </div>
+                @if (percCostAnswer != null)
+                    </details>
+                @endif
                 @if (searchIntentHandoff)
                     <div class="state-money-intent-inline">
                         @template.tags.searchIntentNextSteps(

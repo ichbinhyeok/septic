@@ -28,6 +28,26 @@ class SeoDepthExpansionRegressionTest {
         assertThat(page("/perc-test-cost/west-virginia/")).doesNotContain("data-verified-agency-fee");
     }
 
+    @Test void percPagesLeadWithTheFeeOrOfficialPricingRoute() throws Exception {
+        for (String state : List.of("arkansas", "california", "colorado", "indiana", "maryland", "nevada",
+                "new-york", "ohio", "oklahoma", "tennessee", "texas", "utah", "wisconsin", "wyoming")) {
+            assertThat(page("/perc-test-cost/" + state + "/"))
+                    .containsSubsequence("data-perc-cost-answer", "state_perc_cost_answer", "Permit records and local review")
+                    .doesNotContain("quote hold:");
+        }
+        assertThat(page("/perc-test-cost/maryland/")).contains("$450", "www.aahealth.org/environmental-health/permit-fees");
+        assertThat(page("/perc-test-cost/california/")).contains("$792", "lwqd_feeschedule.pdf");
+        assertThat(page("/perc-test-cost/tennessee/")).contains("$400", "construction permit fee schedule");
+    }
+
+    @Test void countyRecordStartsExposeTheLocalOfficeAndViewerFallback() throws Exception {
+        assertThat(page("/septic-records-checklist/south-carolina/aiken-county/"))
+                .containsSubsequence("data-county-record-start", "tel:+18036421637", "Call SCDES for the existing permit");
+        assertThat(page("/septic-records-checklist/tennessee/cumberland-county/"))
+                .containsSubsequence("data-county-record-start", "Open the TDEC septic records viewer",
+                        "field-offices/cookeville.html", "county_records_start_alternate", "id=\"county-access-workflow\"");
+    }
+
     @Test void countyInstructionsExposeAttachmentsAndLocalSearchDifferences() throws Exception {
         assertThat(page("/septic-records-checklist/north-carolina/henderson-county/"))
                 .contains("id=\"record-search-instructions\"", "Permit Notes", "Last,First", "REID/PIN", "1979–1983");

@@ -70,7 +70,7 @@ class RecordStartIntentRegressionTest {
         String finder = Files.readString(Path.of("src/main/jte/tags/addressRecordFinder.jte"));
         String script = Files.readString(Path.of("src/main/resources/static/app.js"));
 
-        assertTrue(home.contains("Septic records.<br>Clear answers."));
+        assertTrue(home.contains("Find your<br>septic records."));
         assertTrue(home.contains("send a focused request to the responsible public office"));
         assertTrue(home.contains("Ask SepticPath to investigate"));
         assertTrue(home.contains("Self-serve alternative"));

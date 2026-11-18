@@ -2789,7 +2789,7 @@ The goal is to settle the permit path before we frame the project as a normal in
         model.addAttribute("countyPage", countyPage);
         CountySearchGuideView countySearchGuide = countySearchGuide(countyPage);
         model.addAttribute("countySearchGuide", countySearchGuide);
-        model.addAttribute("countyRecordStart", CountyRecordStartView.from(countyAccessProfile, countySearchGuide));
+        model.addAttribute("countyRecordStart", CountyRecordStartView.from(countyPage, countyAccessProfile, countySearchGuide));
         model.addAttribute("countyAccessProfile", countyAccessProfile);
         model.addAttribute("countyAcquisitionProfile", countyAcquisitionProfile);
         model.addAttribute("countyLocalContent", countyLocalContent);
@@ -3224,6 +3224,9 @@ The goal is to settle the permit path before we frame the project as a normal in
 
         model.addAttribute("page", seoService.stateMoneyPage(stateMoneyPage, state, STATE_PAGE_PREPARER, SOURCE_REVIEWER));
         model.addAttribute("stateMoneyPage", stateMoneyPage);
+        if ("perc-test-cost".equals(contentSlug)) {
+            model.addAttribute("percCostAnswer", PercCostAnswer.forState(state.stateCode()));
+        }
         model.addAttribute("countySearchGuides", countySearchGuides(state.stateCode()));
         model.addAttribute("state", state);
         model.addAttribute("sources", sources);
@@ -6454,19 +6457,19 @@ The goal is to settle the permit path before we frame the project as a normal in
         );
 
         List<String> firstArtifacts = topPatterns.stream()
-                .map(pattern -> stateMoneyPage.title() + " file check: " + pattern.firstArtifact())
+                .map(CountyPatternType::firstArtifact)
                 .distinct()
                 .limit(4)
                 .toList();
 
         List<String> countyDropTriggers = topPatterns.stream()
-                .map(pattern -> stateMoneyPage.title() + " county trigger: " + pattern.countyDropTrigger())
+                .map(CountyPatternType::countyDropTrigger)
                 .distinct()
                 .limit(4)
                 .toList();
 
         List<String> holdQuoteChecks = topPatterns.stream()
-                .map(pattern -> stateMoneyPage.title() + " quote hold: " + pattern.holdQuoteCheck())
+                .map(CountyPatternType::holdQuoteCheck)
                 .distinct()
                 .limit(4)
                 .toList();
