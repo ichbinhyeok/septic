@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${AssetPaths.versioned("/app.css")}">
+    <script src="${AssetPaths.versioned("/route-sharing.js")}" defer></script>
     <script src="${AssetPaths.versioned("/app.js")}" defer></script>
 </head>
 <body class="record-finder-embed-page">

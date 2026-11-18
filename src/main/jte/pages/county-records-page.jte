@@ -307,6 +307,7 @@
                            target="_blank"
                            rel="noreferrer"
                            data-track-click="nav"
+                           data-record-official-link
                            data-track-source-context="county_records_command_records"
                            data-track-target-type="official_source">${countyPage.recordsActionLabel()}</a>
                     @endif
@@ -1365,12 +1366,6 @@
                         <span class="eyebrow">${countySearchResponse.badgeLabel()}</span>
                         <h2>${countySearchResponse.heading()}</h2>
                         <p>For the ${countyPage.countyName()} search path: ${countySearchResponse.summary()}</p>
-                        <div class="county-response-dossier__queries" aria-label="Search queries this county page is tuned to answer">
-                            <span>${countySearchResponse.priorityLabel()}</span>
-                            @for (var question : countySearchResponse.questions())
-                                <span>${question}</span>
-                            @endfor
-                        </div>
                     </div>
 
                     <div class="county-response-dossier__rows" role="list" aria-label="County search response checklist">
@@ -1681,7 +1676,7 @@
 
         <div class="detail-grid">
             <article class="detail-card">
-                <h2>Why ${countyPage.countyName()} is worth its own page</h2>
+                <h2>What to check in ${countyPage.countyName()}</h2>
                 <p>${countyLocalContent.uniqueAngle()}</p>
                 <p>${countyLocalContent.targetReader()}</p>
             </article>

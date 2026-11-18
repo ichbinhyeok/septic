@@ -7,6 +7,7 @@ import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -37,19 +38,25 @@ class IndianaCountyRoutingTests {
     }
 
     @Test
-    void priorityIndianaCountyPagesAnswerExactLookupQueriesAndLinkBackToStateHub() throws Exception {
-        assertCountyIntent("porter-county", "porter county septic permit lookup");
-        assertCountyIntent("monroe-county", "monroe county indiana septic records");
-        assertCountyIntent("brown-county", "brown county indiana septic records");
-        assertCountyIntent("grant-county", "grant county indiana septic records");
+    void priorityIndianaCountyPagesProvideOfficialRecordRoutesAndLinkBackToStateHub() throws Exception {
+        assertCountyIntent("porter-county", "Porter County",
+                "https://www.in.gov/localhealth/portercounty/environmental-health/septic-systems/locating-existing-septic-systems/", "1974");
+        assertCountyIntent("monroe-county", "Monroe County",
+                "https://www.in.gov/counties/monroe/Departments/health-department/wastewater/", "Minimum Specs");
+        assertCountyIntent("brown-county", "Brown County",
+                "https://www.in.gov/localhealth/browncounty/files/Request-for-Records-Form-.pdf", "system diagram");
+        assertCountyIntent("grant-county", "Grant County",
+                "https://www.in.gov/localhealth/grantcounty/environmental-division/faqs/", "records search when given an address");
     }
 
-    private void assertCountyIntent(String countySlug, String query) throws Exception {
-        mockMvc.perform(get("/septic-records-checklist/indiana/" + countySlug + "/"))
+    private void assertCountyIntent(String countySlug, String countyName, String officialUrl, String routeDetail) throws Exception {
+        String html = mockMvc.perform(get("/septic-records-checklist/indiana/" + countySlug + "/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString(query)))
-                .andExpect(content().string(org.hamcrest.Matchers.containsString(
-                        "/septic-records-checklist/indiana/"
-                )));
+                .andReturn().getResponse().getContentAsString();
+        assertThat(html).contains(countyName, routeDetail,
+                "href=\"" + officialUrl + "\"",
+                "href=\"/septic-records-checklist/indiana/\"");
+        assertThat(html).doesNotContain("Search queries this county page is tuned to answer",
+                "The page should make", "worth its own page");
     }
 }

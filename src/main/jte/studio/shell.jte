@@ -49,6 +49,7 @@
             window.gtag("config", "G-S1SY1NS71P");
         }
     </script>
+    <script src="${AssetPaths.versioned("/route-sharing.js")}" defer></script>
     <script src="${AssetPaths.versioned("/app-core.js")}" defer></script>
     @if (mobileHeroImage.isBlank())
     <link rel="preload" as="image" href="${heroImage}" fetchpriority="high">

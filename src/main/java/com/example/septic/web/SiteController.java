@@ -2980,12 +2980,12 @@ The goal is to settle the permit path before we frame the project as a normal in
                 ),
                 new CountyWorkflowFieldView(
                         "Request method",
-                        requestMethod + ". The page should make the official record path, request wording, and fallback office visible without another search."
+                        requestMethod
                 ),
                 new CountyWorkflowFieldView(
                         "When the lookup stalls",
                         countyPage.hasParcelAnchor()
-                                ? "Lead with the parcel or TMS anchor, then move into the septic file request so address-only searchers do not bounce."
+                                ? "Use the parcel or TMS identifier to match the property, then request the missing septic documents from the records office."
                                 : "Lead with the county record path and ask for the parcel identifier, permit copy, as-built, final approval, inspection letter, or written no-record response."
                 )
         );

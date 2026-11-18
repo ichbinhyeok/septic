@@ -956,6 +956,7 @@
             const searchPacket = finder.querySelector("[data-record-search-packet]");
             const searchPacketOutput = finder.querySelector("[data-record-search-packet-output]");
             const searchPacketCopy = finder.querySelector("[data-record-search-packet-copy]");
+            const publicGuideShare = finder.querySelector("[data-record-public-share]");
             const returnPanel = finder.querySelector("[data-address-record-finder-return]");
             const returnHeading = finder.querySelector("[data-record-return-heading]");
             const returnCopy = finder.querySelector("[data-record-return-copy]");
@@ -1301,7 +1302,19 @@
                 ].filter(Boolean).join("\n");
             }
 
+            function renderPublicGuideShare(context) {
+                if (!publicGuideShare) return;
+                const guide = context?.routePath || "";
+                const isCountyGuide = /^\/septic-records-checklist\/[a-z-]+\/[a-z0-9-]+\/$/.test(guide);
+                const url = !context?.directDocument && isCountyGuide
+                    ? window.SepticPathRouteSharing?.buildPublicUrl(guide, window.location.origin) : null;
+                publicGuideShare.hidden = !url;
+                const shareButton = publicGuideShare.querySelector("[data-share-route]");
+                if (shareButton) shareButton.dataset.shareUrl = url || "";
+            }
+
             function renderSearchPacket(context) {
+                renderPublicGuideShare(context);
                 if (!(searchPacket instanceof HTMLElement) || !(searchPacketOutput instanceof HTMLElement)) {
                     return;
                 }
@@ -1504,6 +1517,7 @@
 
             function applyImportedWorkspace(imported) {
                 routeContext = imported.context;
+                renderPublicGuideShare(routeContext);
                 workspaceState = { documents: imported.documents };
                 if (purposeSelect instanceof HTMLSelectElement && routeContext.purpose) {
                     purposeSelect.value = routeContext.purpose;
@@ -1990,6 +2004,7 @@
                     directDocument: true,
                     purpose: currentPurpose()
                 };
+                renderPublicGuideShare(null);
                 result.hidden = false;
                 renderAddressNextSteps(null);
                 if (status) {
@@ -2197,6 +2212,7 @@
                     // The visible task can still be cleared when storage is unavailable.
                 }
                 routeContext = null;
+                renderPublicGuideShare(null);
                 awaitingOfficialReturn = false;
                 workspaceState = { documents: [] };
                 confirmedFindingKeys.clear();
@@ -7870,105 +7886,6 @@
     }
 
     setupPacketNoteActions();
-
-    function setupShareActions() {
-        const buttons = Array.from(document.querySelectorAll("[data-share-route]"));
-        if (!buttons.length) {
-            return;
-        }
-
-        function shareTargetPath() {
-            return `${analyticsSourcePage()}#share`;
-        }
-
-        async function fallbackCopy(text) {
-            if (navigator.clipboard && window.isSecureContext) {
-                try {
-                    await navigator.clipboard.writeText(text);
-                    return;
-                } catch (_error) {
-                    // Fall back to a selected textarea when clipboard permissions are denied.
-                }
-            }
-
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.setAttribute("readonly", "");
-            textArea.style.position = "fixed";
-            textArea.style.top = "-1000px";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            textArea.setSelectionRange(0, textArea.value.length);
-
-            try {
-                if (!document.execCommand("copy")) {
-                    throw new Error("copy command rejected");
-                }
-            } catch (error) {
-                throw error;
-            } finally {
-                document.body.removeChild(textArea);
-            }
-        }
-
-        function setTemporaryLabel(button, label, className) {
-            const originalLabel = button.dataset.originalLabel || button.textContent;
-            button.dataset.originalLabel = originalLabel;
-            button.textContent = label;
-            button.classList.add(className);
-            window.setTimeout(() => {
-                button.textContent = originalLabel;
-                button.classList.remove(className);
-            }, 1800);
-        }
-
-        buttons.forEach((button) => {
-            button.addEventListener("click", async () => {
-                const url = button.dataset.shareUrl || window.location.href;
-                const title = button.dataset.shareTitle || document.title;
-                const text = button.dataset.shareText || "";
-                const copyText = [title, text, url].filter(Boolean).join("\n");
-
-                try {
-                    if (navigator.share && window.matchMedia && window.matchMedia("(max-width: 720px)").matches) {
-                        try {
-                            await navigator.share({ title, text, url });
-                            setTemporaryLabel(button, "Shared", "is-copied");
-                            sendNavigationEvent({
-                                sourcePage: analyticsSourcePage(),
-                                sourceContext: button.dataset.trackSourceContext || "share_route",
-                                targetPath: shareTargetPath(),
-                                targetType: "native_share",
-                                targetLabel: title
-                            });
-                            return;
-                        } catch (shareError) {
-                            if (shareError && shareError.name === "AbortError") {
-                                return;
-                            }
-                        }
-                    }
-
-                    await fallbackCopy(copyText);
-                    setTemporaryLabel(button, "Link copied", "is-copied");
-
-                    sendNavigationEvent({
-                        sourcePage: analyticsSourcePage(),
-                        sourceContext: button.dataset.trackSourceContext || "share_route",
-                        targetPath: shareTargetPath(),
-                        targetType: "clipboard",
-                        targetLabel: title
-                    });
-                } catch (error) {
-                    button.setAttribute("title", url);
-                    setTemporaryLabel(button, "Copy URL manually", "is-copy-failed");
-                }
-            });
-        });
-    }
-
-    setupShareActions();
 
     function supportsStateAwareTools(pathname) {
         return pathname === "/septic-system-cost-calculator/"

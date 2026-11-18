@@ -80,9 +80,11 @@ class GrowthAssetRoutesRegressionTest {
     @Test void materialLastmodOnlyAdvancesTheEditedRoutes() throws Exception {
         String sitemap = page("/sitemap.xml") + page("/sitemap-county.xml");
         assertThat(sitemap).contains("/septic-records-checklist/indiana/</loc><lastmod>2026-11-18</lastmod>");
-        for (String path : List.of("/septic-records-checklist/north-carolina/guilford-county/",
-                "/septic-records-checklist/north-carolina/union-county/")) {
-            assertThat(sitemap).containsPattern(java.util.regex.Pattern.quote(path) + "</loc>\\s*<lastmod>2026-10-05</lastmod>");
+        assertThat(sitemap).containsPattern(java.util.regex.Pattern.quote("/septic-records-checklist/north-carolina/guilford-county/") + "</loc>\\s*<lastmod>2026-10-05</lastmod>");
+        for (String path : List.of("/septic-records-checklist/north-carolina/union-county/",
+                "/septic-records-checklist/michigan/livingston-county/",
+                "/septic-records-checklist/virginia/prince-william-county/", "/septic-records-access-index/")) {
+            assertThat(sitemap).containsPattern(java.util.regex.Pattern.quote(path) + "</loc>\\s*<lastmod>2026-11-18</lastmod>");
         }
     }
 

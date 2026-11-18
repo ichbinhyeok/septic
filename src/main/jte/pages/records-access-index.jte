@@ -63,6 +63,13 @@
         renderCrawlDirectory = true
     )
 
+    <section class="section section--tight" aria-label="Share county search filters">
+        <div class="container">
+            <button class="button button--secondary" type="button" data-share-route data-share-title="Septic Records Access Index">Share state and filters</button>
+            <p>Send these routes to a buyer, agent, or inspector. Only the selected state and filters are shared; typed search text and property details are excluded.</p>
+        </div>
+    </section>
+
     @template.tags.recordSearchComparison(entries = countySearchGuides)
 
     <section class="section section--tight records-access-state-section"
@@ -119,7 +126,7 @@
                                     data-share-route
                                     data-share-title="Septic Records Access Index"
                                     data-share-text="${totalCountyRouteCount} official-source county septic records routes across ${countyRouteStateCount} states."
-                                    data-track-source-context="records_access_index_filtered_share">Share filtered view</button>
+                                    data-track-source-context="records_access_index_filtered_share">Share state and filters</button>
                         </div>
                     </div>
                     <details class="records-access-embed">
