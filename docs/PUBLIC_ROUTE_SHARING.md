@@ -13,7 +13,18 @@ Existing canonical URLs remain unchanged.
 
 `/events/artifact-action` receives `sourceContext=route_sharing`, a public route
 path, and categorical action/type values. The same action is emitted to GA4 with
-the `route_` prefix and `measurement_version=public_share_v1`.
+the `route_` prefix and `measurement_version=public_share_v2`.
+
+For `share_clicked`, `share_copied`, and `share_handoff`, first-party `sourcePage`
+and GA `page_location` identify the allowlisted public page where sharing happened
+(for example, the finder). GA `route_path` identifies the destination county guide
+or index, and `artifactType` describes that destination. Query strings and fragments
+are omitted. An unknown or private source path falls back to the safe destination.
+For `share_arrival` and `share_official_open`, these page fields continue to identify
+the shared landing path, even after navigation. Version 1 attributed sharing actions
+to the destination; do not use those older events to compare originating surfaces.
+First-party events do not have a version field, so use the correction's deployment
+boundary when comparing their source-page counts.
 
 | Action | What it establishes |
 | --- | --- |

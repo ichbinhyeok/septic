@@ -100,6 +100,24 @@ test('clipboard success is distinct from intent; copies only sanitized public UR
     assert.equal(JSON.stringify(env.events).includes('PRIVATE'), false);
 });
 
+test('sharing attributes the public source surface separately from destination and rejects private source paths', async () => {
+    for (const nativeShare of [false, true]) {
+        for (const sourcePath of ['/septic-record-finder/', county, index, '/unlock/PRIVATE-TOKEN/', '/unknown/PRIVATE-TOKEN/']) {
+            const env = browser({ url: origin + sourcePath + '?address=PRIVATE#PRIVATE', nativeShare, mobile: nativeShare });
+            await install(env.win).share(button());
+            const expectedSource = sourcePath.includes('PRIVATE-TOKEN') ? county : sourcePath;
+            assert.deepEqual(actions(env), ['share_clicked', nativeShare ? 'share_handoff' : 'share_copied']);
+            for (const event of env.events) assert.equal(event.sourcePage, expectedSource);
+            for (const [, , params] of env.ga) {
+                assert.equal(params.page_location, origin + expectedSource);
+                assert.equal(params.route_path, county);
+                assert.equal(params.measurement_version, 'public_share_v2');
+            }
+            assert.equal(JSON.stringify([env.events, env.ga]).includes('PRIVATE'), false);
+        }
+    }
+});
+
 test('clipboard rejection and failed legacy fallback do not claim successful copying', async () => {
     const env = browser({ clipboardReject: true });
     const control = button();
