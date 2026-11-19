@@ -8,6 +8,26 @@ import java.util.Map;
 public final class CountyAccessProfileCatalog {
 
     private static final Map<String, CountyAccessProfileView> PROFILES = Map.ofEntries(
+            Map.entry("NC::onslow-county", profile(
+                    "NC::onslow-county",
+                    "portal_with_fallback",
+                    "Public permit search with written records request",
+                    "Find Onslow County septic permits and plans",
+                    "Search the county’s Citizen Access portal. Email Environmental Health for permits, drawings, or inspection records missing online.",
+                    "Search official septic records",
+                    "https://onslowcountync-energovpub.tylerhost.net/Apps/SelfService#/search",
+                    "Request missing records by email",
+                    "mailto:EH@onslowcountync.gov",
+                    "The property’s permit and available attachments, or a written reply from Environmental Health",
+                    "Older records may be filed by owner or subdivision. Carry the subdivision and lot if the address alone does not find the file.",
+                    List.of("Street address or permit number"),
+                    List.of("Septic operation permit", "Site plan or drawing", "Final inspection", "Later repair permits"),
+                    List.of(
+                            "In Citizen Access, choose Permit and search the property address or permit number.",
+                            "Open the matching septic permit and check its attachments for the plan and inspection documents.",
+                            "For missing records, email Environmental Health with the address, the document needed, and any known parcel, prior owner, or subdivision and lot."
+                    )
+            )),
             Map.entry("CO::el-paso-county", profile(
                     "CO::el-paso-county",
                     "portal_with_fallback",

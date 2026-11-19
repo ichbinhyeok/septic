@@ -16102,21 +16102,23 @@
       "countyName": "Onslow County",
       "countySlug": "onslow-county",
       "title": "Onslow County North Carolina Septic Records Checklist and Permit Lookup",
-      "metaDescription": "Onslow County septic records checklist and permit lookup with Existing System Authorization, Improvement Permit and Construction Authorization, and repair-plot-plan rules before you trust a coastal NC system story.",
-      "introCopy": "In Onslow County, the county breaks the workflow into visible branches. The county says additions with no bedroom increase and no encroachment need an Existing System Authorization, bedroom increases or relocations likely need an Improvement Permit and Construction Authorization, and repairs require a permit plus a detailed plot plan.",
-      "uniqueAngle": "Onslow County is an existing-authorization-versus-new-permit county. The real branch is whether the property can stay in the existing-system lane or whether bedrooms, relocation, or failure push it into a bigger county review.",
-      "targetReader": "Best for Onslow County buyers, owners, and coastal remodelers who need to know whether the next move is an existing-system authorization, a repair permit, or a full new permit lane before trusting the septic story.",
+      "metaDescription": "Search Onslow County septic permits by address in Citizen Access. Email Environmental Health for a missing permit, site plan, or inspection record.",
+      "introCopy": "Use Onslow County Citizen Access to search for permits and plans. If a document is missing, email Environmental Health with the property address and the record you need.",
+      "uniqueAngle": "Onslow County pairs its public permit search with a written request for older or missing septic files.",
+      "targetReader": "Onslow County owners, buyers, and remodelers who need the property's septic permit, plan, inspection, or approval.",
       "officeLabel": "Onslow County existing septic systems workflow",
       "officeUrl": "https://www.onslowcountync.gov/679/Existing-Septic-Systems",
-      "recordsLabel": "Find or request Onslow County Environmental Health records",
-      "recordsUrl": "https://www.onslowcountync.gov/756/Records",
-      "contactLine": "Onslow County Environmental Health Division | 910-938-5851 | Jacksonville NC",
+      "recordsLabel": "Onslow County Citizen Access permit search",
+      "recordsUrl": "https://onslowcountync-energovpub.tylerhost.net/Apps/SelfService#/search",
+      "contactLine": "Onslow County Environmental Health Division | EH@onslowcountync.gov | 910-938-5851",
       "decisionSteps": [
-        "Check Citizen Access for the existing permit or plan. If the file is missing, use the Environmental Health records page to request a copy with the address and any prior owner or subdivision clues.",
+        "In Citizen Access, search by street address or permit number. Open the matching permit and check its attachments for a site plan or inspection record.",
+        "If a file is missing, email Environmental Health with the address, any known parcel number, and the document you need. For older files, include a prior owner or subdivision and lot if known.",
         "If the number of bedrooms is increasing or the system needs relocation, treat that as a real branch because the county says Improvement Permit and Construction Authorization are likely required.",
         "If the system is malfunctioning, move to the repair workflow and detailed plot plan rather than assuming a quick field fix will be enough."
       ],
       "recordsToRequest": [
+        "The septic operation permit, site plan, and any final inspection tied to the property.",
         "Any Existing System Authorization or related county review record tied to the parcel.",
         "Any Improvement Permit, Construction Authorization, or repair permit tied to the property.",
         "Any detailed plot plan or inspection note used to justify the repair or reuse lane."
@@ -16128,12 +16130,12 @@
       ],
       "faqBlocks": [
         {
-          "question": "Why is Onslow County a strong North Carolina county page?",
-          "answer": "Because Onslow County plainly separates existing-system approvals, new permit lanes, and repair workflows instead of blending them into a generic septic page."
+          "question": "How do I find an Onslow County septic permit by address?",
+          "answer": "Search the property address in Onslow County Citizen Access. Open the matching permit and look for attachments. For documents you cannot find online, send a written request to EH@onslowcountync.gov."
         },
         {
           "question": "What is the first Onslow County septic record to ask for?",
-          "answer": "Start with the existing-system authorization or repair file, then confirm whether bedroom count or relocation pushes the parcel into a new permit lane."
+          "answer": "For an existing system, start with the operation permit, site plan, and any final inspection. If the property was altered, ask for later permits and any Existing System Authorization."
         }
       ],
       "internalLinkTargets": [
@@ -16152,13 +16154,15 @@
         "nc_onslow_02",
         "nc_onslow_03",
         "nc_onslow_04",
-        "nc_onslow_05"
+        "nc_onslow_05",
+        "nc_onslow_06",
+        "nc_onslow_07"
       ],
       "publishStatus": "published",
       "workflowStructure": {
         "fileOwnerCategory": "district_health",
-        "fileOwnerModel": "Onslow County Environmental Health or the local health district is the practical file owner, and the real county story starts there rather than at a generic statewide desk.",
-        "firstArtifactToPull": "Any Existing System Authorization or related county review record tied to the parcel.",
+        "fileOwnerModel": "Onslow County Environmental Health holds the county septic file and points to Citizen Access for online lookup.",
+        "firstArtifactToPull": "The septic operation permit and any attached site plan for the property.",
         "permitCloseoutCategory": "permit_ladder",
         "permitCloseoutSignal": "Onslow County gets real when the approval ladder shows the parcel moved beyond preliminary review into a buildable county path.",
         "transferCategory": "formal_transfer_artifact",
