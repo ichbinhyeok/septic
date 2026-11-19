@@ -69,27 +69,31 @@
                 @else
                     <h1>${contentPage.title()}</h1>
                     @if ("perc-test-cost".equals(contentPage.slug()))
-                        <p class="lede">Use ${percPlanningRange} as a broad planning estimate for a perc test or private soil work. Compare what each quote includes and check which fees the permitting office charges separately.</p>
+                        <p class="lede">Use ${percPlanningRange} as a broad planning estimate for private perc testing or soil evaluation. Ask your permitting office which fees to budget for separately.</p>
                     @else
                         <p class="lede">${contentPage.introCopy()}</p>
                     @endif
                 @endif
                 @if ("perc-test-cost".equals(contentPage.slug()))
                     <section class="content-quick-answer" aria-labelledby="perc-cost-answer">
-                        <h2 id="perc-cost-answer">Ask what the quote includes</h2>
+                        <h2 id="perc-cost-answer">Private soil work and agency fees</h2>
                         <div class="facts-table-wrap">
-                            <table class="facts-table">
+                            <table class="facts-table" data-perc-cost-comparison>
                                 <caption>Perc test cost breakdown</caption>
-                                <thead><tr><th scope="col">Cost item</th><th scope="col">What to confirm</th></tr></thead>
+                                <thead><tr><th scope="col">Who you pay</th><th scope="col">What to budget for</th></tr></thead>
                                 <tbody>
-                                    <tr><th scope="row">Agency fee</th><td>Which office charges for the permit application or site evaluation?</td></tr>
-                                    <tr><th scope="row">Private soil work</th><td>How many test locations and visits are included?</td></tr>
-                                    <tr><th scope="row">Excavation</th><td>Who provides test pits, equipment, and backfill?</td></tr>
-                                    <tr><th scope="row">Report and design</th><td>Does the price include a written report, plot plan, filing, or engineering?</td></tr>
+                                    <tr>
+                                        <th scope="row">Private soil evaluator</th>
+                                        <td>Get a written quote for the field visit and soil report. Confirm who pays for digging and backfilling test pits, extra visits, and any design work. <a href="https://tennesseesoilscience.com/faqs">One Tennessee provider lists $1,500 for most single-lot projects</a>.</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Permitting office</th>
+                                        <td>Use the posted fees for application, site evaluation or review, and inspection. Ask which are bundled. Examples include <a href="/perc-test-cost/south-carolina/">South Carolina’s $150 residential application</a> and <a href="/perc-test-cost/oregon/">Oregon DEQ’s $1,121 first-lot evaluation</a>.</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p><strong>Verified examples:</strong> <a href="/perc-test-cost/south-carolina/">South Carolina’s $150 SCDES residential application</a> and <a href="/perc-test-cost/oregon/">Oregon DEQ’s $1,121 first-lot evaluation</a> cover different services. Confirm your county’s requirements before paying.</p>
+                        <p>Ask who performs the field evaluation before adding the two costs. Some agencies evaluate the site themselves. See the <a href="/perc-test-cost/georgia/#cobb-douglas-septic-fees">Cobb and Douglas fee example</a> for separately listed site review and permit fees.</p>
                     </section>
                 @endif
                 @if (fieldServicePage)

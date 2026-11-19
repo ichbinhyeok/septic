@@ -304,8 +304,8 @@
         "perc test for septic system"
       ],
       "title": "How Much Does a Perc Test Cost?",
-      "metaDescription": "See what a perc test quote covers, how permit and site evaluation fees differ, and where to check your state’s requirements.",
-      "introCopy": "Use $300-$3,000 as a broad planning estimate for a perc test or private soil work. Compare what each quote includes and check which application or evaluation fees are charged separately in your area.",
+      "metaDescription": "Compare private perc testing and soil evaluation quotes with permit, site review, and inspection fees. See published examples and what to ask locally.",
+      "introCopy": "Use $300-$3,000 to plan for private perc testing or soil evaluation. Check which application, site review, or inspection fees the local permitting office charges separately.",
       "calculatorModule": "main_cost_estimator",
       "calculatorProjectType": "perc_test",
       "targetReader": "Best for homeowners, buyers, and land shoppers who need a usable perc-test budget, a checklist for comparing quotes, and a supported local route when state or county rules change the scope.",
@@ -343,15 +343,15 @@
       "faqBlocks": [
         {
           "question": "How much does a perc test cost?",
-          "answer": "Use $300-$3,000 as a national planning range. The number of test locations, excavation, soil professional, plot plan, report, travel, filing, and retesting determine where a real quote lands."
+          "answer": "Use $300-$3,000 to plan for private fieldwork. Price the soil evaluation, excavation, and report with the provider. Also check whether the permitting office charges separately for review, an application, or inspection."
         },
         {
           "question": "Is a perc test the same as a percolation test or a perk test?",
           "answer": "Yes. Homeowners, agents, and contractors often use perc, perk, and percolation test to describe the same soil-absorption question, even if the local process also includes a broader site evaluation."
         }
       ],
-      "updatedAt": "2026-11-18",
-      "reviewedAt": "2026-11-18",
+      "updatedAt": "2026-11-19",
+      "reviewedAt": "2026-11-19",
       "internalLinkTargets": [
         "/failed-perc-test-septic/",
         "/septic-replacement-area/",

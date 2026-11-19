@@ -7068,10 +7068,21 @@ class SepticApplicationTests {
 		mockMvc.perform(get("/perc-test-cost/georgia/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia Perc Test Cost")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<meta name=\"robots\" content=\"index,follow\">")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("id=\"cobb-douglas-septic-fees\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Through Dec. 31, 2026")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("From Jan. 1, 2027")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Lot site review</th><td>$110</td><td>$141</td>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Inspection and permit</th><td>$250</td><td>$320</td>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Georgia-certified soil classifier")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Who this page is for")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How this workflow usually unfolds in Georgia")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("The property address and county environmental health office handling the lot.")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("/septic-system-cost-calculator/?state=GA&projectType=perc_test")));
+		mockMvc.perform(get("/sitemap.xml"))
+				.andExpect(status().isOk())
+				.andExpect(content().string(org.hamcrest.Matchers.containsString(
+						"<loc>https://example.test/perc-test-cost/georgia/</loc><lastmod>2026-11-19</lastmod>")));
 	}
 
 	@Test
@@ -8507,7 +8518,11 @@ class SepticApplicationTests {
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<title>How Much Does a Perc Test Cost? Fees &amp; Quote Checklist")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Use $300 to $3,000 as a broad planning estimate")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Perc test cost breakdown")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<dd>2026-11-18</dd>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Private soil evaluator")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Permitting office")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://tennesseesoilscience.com/faqs\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"/perc-test-cost/georgia/#cobb-douglas-septic-fees\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<dd>2026-11-19</dd>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("How much does a perc test cost?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Is a perc test the same as a percolation test or a perk test?")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open state perc pages")))
