@@ -70,6 +70,7 @@ public class SitemapService {
             Map.entry("/septic-records-checklist/ohio/hamilton-county/", "2026-11-19"),
             Map.entry("/septic-records-checklist/indiana/tippecanoe-county/", "2026-11-19"),
             Map.entry("/septic-records-checklist/north-carolina/henderson-county/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/north-carolina/onslow-county/", "2026-11-19"),
             Map.entry("/perc-test-cost/oregon/", "2026-11-18"),
             Map.entry("/perc-test-cost/south-carolina/", "2026-11-18"),
             Map.entry("/septic-records-checklist/michigan/livingston-county/", "2026-11-18"),

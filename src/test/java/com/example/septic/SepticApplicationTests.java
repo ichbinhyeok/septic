@@ -5556,11 +5556,14 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void onslowCountyRecordsPageShowsExistingAuthorizationWorkflow() throws Exception {
+	void onslowCountyRecordsPageShowsOfficialSearchAndWrittenRecordRequest() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/north-carolina/onslow-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Onslow County North Carolina Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Find or request Onslow County Environmental Health records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://onslowcountync-energovpub.tylerhost.net/Apps/SelfService#/search\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"mailto:EH@onslowcountync.gov\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Choose Permit in Citizen Access.")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Request missing records by email")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Existing System Authorization")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Improvement Permit and Construction Authorization")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open North Carolina records lookup")))
