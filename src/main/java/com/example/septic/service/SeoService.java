@@ -736,7 +736,7 @@ public class SeoService {
     private String countyRecordsTitle(CountyRecordsPage countyPage, StateProfile state) {
         String priorityTitle = switch (countyPage.key()) {
             case "OH::lake-county", "NC::henderson-county" -> countyPage.title();
-            case "VA::prince-william-county" -> "Prince William County Septic Records by Address or GPIN";
+            case "VA::prince-william-county" -> "Prince William County VA Septic Inspections & Records";
             case "TX::tarrant-county" -> "Tarrant County OSSF Records and Jurisdiction Check";
             case "TN::hamilton-county" -> "Hamilton County TN Septic Records & Permit Search";
             case "NC::alamance-county" -> "Alamance County NC Septic Records & Permit Lookup";
@@ -815,7 +815,7 @@ public class SeoService {
     private String countyRecordsDescription(CountyRecordsPage countyPage, StateProfile state) {
         String priorityDescription = switch (countyPage.key()) {
             case "OH::lake-county", "OH::hamilton-county", "NC::henderson-county" -> countyPage.metaDescription();
-            case "VA::prince-william-county" -> "Find Prince William County septic permits and plans by street address or GPIN. Use the Health District contact if the historical archive is unavailable.";
+            case "VA::prince-william-county" -> "Find past septic inspection records and permits by address or GPIN in Prince William County, VA. Need a new inspection? Find a licensed professional.";
             case "TX::tarrant-county" -> "Confirm whether Tarrant County, a contract city, or an ETJ owns the OSSF file before requesting the permit, LTO, site evaluation, or recorded affidavit.";
             case "TN::hamilton-county" -> "Use Hamilton County document retrieval and its Groundwater fallback to obtain the septic permit and installation certificate of completion.";
             case "NC::alamance-county" -> "Request an existing Alamance County septic property file without confusing a historical record copy with a new application or paid field inspection.";

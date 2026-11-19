@@ -47,8 +47,11 @@
 @param String editorialLastReviewedAt = ""
 @param String editorialNote = ""
 
-!{boolean thurstonDrawingSearch = "WA::thurston-county".equals(countyPage.key()) && countyPage.hasParcelAnchor()
-        && !countyRecordStart.alternateUrl().isBlank();}
+!{
+    boolean thurstonDrawingSearch = "WA::thurston-county".equals(countyPage.key())
+            && countyPage.hasParcelAnchor() && !countyRecordStart.alternateUrl().isBlank();
+    boolean princeWilliamInspection = "VA::prince-william-county".equals(countyPage.key());
+}
 
 @template.layouts.app(page = page, designFamily = "signature", content = @`
     <link rel="stylesheet" href="${AssetPaths.versioned("/premium-county.css")}">
@@ -71,6 +74,26 @@
                     <li><a href="${countyRecordStart.officialUrl()}" target="_blank" rel="noreferrer" data-county-record-start-official data-record-official-link data-track-click="nav" data-track-source-context="county_records_premium_official" data-track-target-type="official_source">${countyRecordStart.officialLabel()}</a></li>
                     <li><a href="${countyRecordStart.alternateUrl()}" target="_blank" rel="noreferrer" data-record-official-link data-track-click="nav" data-track-source-context="county_records_start_alternate" data-track-target-type="official_source">${countyRecordStart.alternateLabel()}</a> if the archive has no drawing.</li>
                 </ol>
+            @elseif (princeWilliamInspection)
+                <p class="county-record-start__identifiers">
+                    <strong>Find a past septic inspection or permit</strong>
+                    Search by street address or GPIN. Look for a filed installation inspection or approval.
+                    If the archive is unavailable,
+                    <a href="${countyPage.officeUrl()}"
+                       data-record-official-link
+                       data-track-click="nav"
+                       data-track-source-context="prince_william_records_fallback"
+                       data-track-target-type="official_source">contact the Health District</a>.
+                </p>
+                <p class="county-record-start__note">
+                    <strong>Need a current inspection for a sale or refinance?</strong>
+                    Hire a Virginia-licensed onsite sewage system operator, installer, or soil evaluator.
+                    Check your lender’s requirements and
+                    <a href="https://www.dpor.virginia.gov/LicenseLookup"
+                       data-track-click="nav"
+                       data-track-source-context="prince_william_inspector_license"
+                       data-track-target-type="official_source">verify the inspector’s license</a>.
+                </p>
             @else
                 <p class="county-record-start__identifiers"><strong>Have ready</strong> ${countyRecordStart.identifiers()}</p>
                 @if (!countyRecordStart.note().isBlank())
@@ -96,6 +119,15 @@
                        data-track-source-context="county_records_start_alternate"
                        data-track-target-type="official_source">${countyRecordStart.alternateLabel()}</a>
                 @endif
+                @endif
+                @if (princeWilliamInspection)
+                    <a class="button button--secondary"
+                       href="https://www.vdh.virginia.gov/environmental-health/onsite-sewage-water-services-updated/septic-system-and-private-well-service-providers/"
+                       target="_blank"
+                       rel="noreferrer"
+                       data-track-click="nav"
+                       data-track-source-context="prince_william_field_inspection_provider"
+                       data-track-target-type="official_source">Find a local septic professional</a>
                 @endif
                 <a class="county-record-start__help"
                    href="${RecordHelpEntry.of("missing").link(countyPage.path(state.slug()), state.stateCode(), countyPage.countyName())}"
