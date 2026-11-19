@@ -3837,8 +3837,8 @@ class SepticApplicationTests {
 	void princeWilliamCountyRecordsPageShowsDatabaseAndPumpOutWorkflow() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/virginia/prince-william-county/"))
 				.andExpect(status().isOk())
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County VA Septic Records by Address or GPIN")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("Start with Prince William On-Site Sewage &amp; Water Services")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County VA Septic Inspections &amp; Records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County septic inspections and records")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Prince William County keeps the practical septic story in the health-district database and land records together")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("health-district file plus the pump-out history and as-built or zoning trail")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("GPIN")))

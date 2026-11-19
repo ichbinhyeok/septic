@@ -73,7 +73,7 @@ public class SitemapService {
             Map.entry("/perc-test-cost/oregon/", "2026-11-18"),
             Map.entry("/perc-test-cost/south-carolina/", "2026-11-18"),
             Map.entry("/septic-records-checklist/michigan/livingston-county/", "2026-11-18"),
-            Map.entry("/septic-records-checklist/virginia/prince-william-county/", "2026-11-18"),
+            Map.entry("/septic-records-checklist/virginia/prince-william-county/", "2026-11-19"),
             Map.entry("/septic-records-checklist/illinois/", "2026-11-18"),
             Map.entry("/septic-records-checklist/west-virginia/", "2026-11-18"),
             Map.entry("/septicsearch-records/", "2026-11-18"),

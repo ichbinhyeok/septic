@@ -10371,8 +10371,8 @@
       "stateCode": "VA",
       "countyName": "Prince William County",
       "countySlug": "prince-william-county",
-      "title": "Prince William County VA Septic Records by Address or GPIN",
-      "metaDescription": "Find Prince William County septic and well documents by street address or GPIN. Follow the Health District folder path and get help if the portal will not open.",
+      "title": "Prince William County VA Septic Inspections and Records",
+      "metaDescription": "Search Prince William County septic records by street address or GPIN, or find a licensed professional for a current inspection before closing.",
       "introCopy": "Prince William Health District links a historical septic and well document repository. Browse the street folders or search using the address or GPIN, then check that every document belongs to the property.",
       "uniqueAngle": "The Health District publishes a street-folder route as well as searchable property identifiers. A historical permit and a current maintenance record answer different questions; keep their dates and scope separate.",
       "targetReader": "For Prince William County owners and buyers looking for a septic permit, layout, or the missing part of a historical property file.",
@@ -10416,7 +10416,9 @@
         "va_princewilliam_01",
         "va_princewilliam_02",
         "va_princewilliam_03",
-        "va_princewilliam_04"
+        "va_princewilliam_04",
+        "va_princewilliam_05",
+        "va_princewilliam_06"
       ],
       "workflowStructure": {
         "fileOwnerCategory": "county_public_health",

@@ -102,6 +102,25 @@ class RecordSearchEvidenceTest {
     }
 
     @Test
+    void princeWilliamOffersSeparatePathsForPastRecordsAndRealEstateInspections() throws Exception {
+        String html = mvc.perform(get("/septic-records-checklist/virginia/prince-william-county/"))
+                .andReturn().getResponse().getContentAsString();
+        int start = html.indexOf("data-county-record-start");
+        int end = html.indexOf("</section>", start);
+        assertThat(start).isNotNegative();
+        assertThat(end).isGreaterThan(start);
+        assertThat(html.substring(start, end)).contains(
+                "Find a past septic inspection or permit",
+                "https://lfportal.pwcgov.org/healthweb/browse.aspx?startid=1",
+                "Need a current inspection for a sale or refinance?",
+                "https://www.dpor.virginia.gov/LicenseLookup",
+                "data-track-source-context=\"prince_william_field_inspection_provider\"",
+                "Find a local septic professional"
+        );
+        assertThat(html).contains("https://law.lis.virginia.gov/vacode/title59.1/chapter24.2/section59.1-310.9/");
+    }
+
+    @Test
     void privacyReviewedOperationalProofCompoundsRealCountyRoutes() throws Exception {
         var pages = data.getPublicCountyRecordsPages().stream()
                 .filter(page -> page.operationalProof() != null)

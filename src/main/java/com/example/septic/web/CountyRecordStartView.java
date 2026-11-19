@@ -45,6 +45,9 @@ public record CountyRecordStartView(
                     "Choose Search in the county portal. If the search is empty or the permit has no site plan attached, ask Environmental Health for the existing septic file.",
                     "tel:+12529023200", "Call Environmental Health"
             );
+            case "VA::prince-william-county" -> new CountyRecordStartView(
+                    county.recordsUrl(), "Search past septic records", "", ""
+            );
             case "IN::tippecanoe-county" -> new CountyRecordStartView(
                     "https://www.tippecanoe.in.gov/569/Sewage-Disposal",
                     "Contact the Health Department for a diagram",
