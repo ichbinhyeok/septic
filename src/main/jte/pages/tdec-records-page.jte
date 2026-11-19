@@ -30,7 +30,7 @@
 
             </div>
             <div class="ptdec-hero__utility">
-                <nav aria-label="Other Tennessee record options"><a href="/septic-record-finder/" data-track-click="internal_handoff" data-track-source-context="tdec_hero_address_finder" data-track-target-type="record_finder">Find the county from a property address →</a></nav>
+                <nav aria-label="Search options by address"><a href="/septic-permit-search-by-address/" data-track-click="internal_handoff" data-track-source-context="tdec_hero_address_finder" data-track-target-type="record_finder">Search existing septic permits by U.S. address →</a></nav>
                 <section class="tdec-return tdec-return--hero" data-tdec-hero-return hidden aria-labelledby="tdec-hero-return-title"><div><span class="eyebrow">Back from TDEC?</span><h3 id="tdec-hero-return-title">Did the official search solve it?</h3><p>Record the result so the next step matches what actually happened.</p></div><div class="tdec-return__choices" role="group" aria-label="TDEC official search result"><button type="button" data-tdec-hero-outcome="found">I found a file</button><button type="button" data-tdec-hero-outcome="empty">Nothing appeared</button><button type="button" data-tdec-hero-outcome="blocked">The site was blocked or failed</button></div><div class="tdec-return__next" data-tdec-hero-next hidden></div></section>
             </div>
         </section>

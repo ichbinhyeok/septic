@@ -87,6 +87,7 @@ public record CountyAccessProfileView(
 
     public String primaryAccessNote() {
         return switch (countyKey) {
+            case "CO::el-paso-county" -> "Choose Address or Schedule / Parcel Number in the county search.";
             case "NY::suffolk-county" -> "Starts a phone call. Have the Tax Map number and construction year ready.";
             case "VA::prince-william-county" -> "Opens the accessible Health District service page. Call On-Site Sewage & Water Services at 703-792-6310, option 2, when the historical portal is blocked.";
             case "TX::tarrant-county" -> "Opens the accessible OSSF office page so you can identify the file owner before requesting records.";

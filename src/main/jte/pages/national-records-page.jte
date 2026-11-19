@@ -40,6 +40,12 @@
                             <a href="#permit-without-drawing">I found a permit number, not the drawing <span aria-hidden="true">↓</span></a>
                         </nav>
                         <a class="drawing-guide-jump" href="/septic-permit-search-by-address/">Haven’t searched yet? Start with your address →</a>
+                    @elseif ("septic-permit-lookup".equals(contentPage.slug()))
+                        <a class="drawing-guide-jump"
+                           href="/septic-permit-search-by-address/"
+                           data-track-click="internal_handoff"
+                           data-track-source-context="permit_lookup_hero_address_search"
+                           data-track-target-type="record_finder">Search existing septic permits by address →</a>
                     @endif
                     @if (!"septic-records-by-county".equals(contentPage.slug()) && !onlineGuide && !addressEntry)
                         <div class="national-records-hero__boundary" role="note">

@@ -8,6 +8,26 @@ import java.util.Map;
 public final class CountyAccessProfileCatalog {
 
     private static final Map<String, CountyAccessProfileView> PROFILES = Map.ofEntries(
+            Map.entry("CO::el-paso-county", profile(
+                    "CO::el-paso-county",
+                    "portal_with_fallback",
+                    "Parcel search with Public Health email",
+                    "Find El Paso County septic permits and drawings",
+                    "Search the county property portal for on-site wastewater treatment system (OWTS) records. Email Public Health for documents missing from the parcel file.",
+                    "Search official septic records",
+                    "https://property.spatialest.com/co/elpaso/",
+                    "Email Public Health for missing records",
+                    "mailto:HEAsepticinfo@elpasoco.com",
+                    "A septic permit, site plan, or final approval for the matching parcel, or a response from Public Health",
+                    "Some parcels have incomplete OWTS records online.",
+                    List.of("Property address or schedule/parcel number"),
+                    List.of("OWTS permit", "Site plan or drawing", "Final approval", "Later repair records"),
+                    List.of(
+                            "In the county property search, select Address or Schedule / Parcel Number.",
+                            "Open the matching property and look for its OWTS records.",
+                            "If a record is missing, email Public Health with the address, parcel number if known, and the document you need."
+                    )
+            )),
             Map.entry("SD::hughes-county", profile(
                     "SD::hughes-county",
                     "jurisdiction_first",
