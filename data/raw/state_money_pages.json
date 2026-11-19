@@ -64,8 +64,8 @@
       "contentSlug": "perc-test-cost",
       "stateCode": "GA",
       "title": "Georgia Perc Test Cost and Soil Analysis",
-      "metaDescription": "Georgia perc test and soil-analysis cost with county environmental health routing, usable drainfield-area risk, and the next permit step in mind.",
-      "introCopy": "In Georgia, perc test cost is really a county soil-analysis and usable-drainfield-area question. Start with the county environmental health path first, because the test fee is usually small but the result can change the whole install or replacement story.",
+      "metaDescription": "Budget for a Georgia soil evaluation and local septic permit fees. Compare Cobb and Douglas site review and inspection fees through 2026 and from January 2027.",
+      "introCopy": "Start with county Environmental Health to check whether the lot needs a soil report. If a report is already on file, ask whether the county will accept it for your project. Budget for any private report separately from site review, permit, or inspection fees.",
       "uniqueAngle": "Georgia's public homeowner materials make county soil analysis, usable drainfield area, and county routing visible enough that the perc page can do real workflow work instead of acting like a generic test-fee explainer.",
       "targetReader": "Best for Georgia owners, buyers, and builders who want a quick perc or soil-analysis number but still need to know whether county review and usable field area will keep the project simple.",
       "fitBullets": [
@@ -97,8 +97,8 @@
       ],
       "faqBlocks": [
         {
-          "question": "Why is a Georgia perc or soil test page worth its own content?",
-          "answer": "Because the test itself may be relatively small, but it directly affects drainfield viability, county approval, and the final replacement or install path."
+          "question": "Does the county permit fee cover a private soil report?",
+          "answer": "If the county requires a Level 3 soil report, ask a Georgia-certified soil classifier for a separate quote. Confirm the site review and inspection or permit fees with your county Environmental Health office."
         },
         {
           "question": "Can I trust the low end if my Georgia soil status is still unknown?",
@@ -113,7 +113,9 @@
       ],
       "officialSourceIds": [
         "ga_01",
-        "ga_02"
+        "ga_02",
+        "ga_cdph_onsite_fees_2020",
+        "ga_cdph_onsite_fees_2027"
       ],
       "publishStatus": "published"
     },

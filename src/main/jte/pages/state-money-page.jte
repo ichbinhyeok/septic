@@ -69,6 +69,29 @@
                         <p>${percCostAnswer.answer()}</p>
                         <a href="${percCostAnswer.sourceUrl()}" data-track-click="nav" data-track-source-context="state_perc_cost_answer" data-track-target-type="official_source">${percCostAnswer.sourceLabel()}</a>
                     </section>
+                @elseif ("GA".equals(state.stateCode()) && "perc-test-cost".equals(stateMoneyPage.contentSlug()))
+                    <section class="content-quick-answer" id="cobb-douglas-septic-fees" aria-labelledby="cobb-douglas-fee-heading">
+                        <h2 id="cobb-douglas-fee-heading">Cobb and Douglas septic fees</h2>
+                        <div class="facts-table-wrap">
+                            <table class="facts-table">
+                                <caption>Published residential fees in Cobb and Douglas counties</caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Agency charge</th>
+                                        <th scope="col">Through Dec. 31, 2026</th>
+                                        <th scope="col">From Jan. 1, 2027</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">Lot site review</th><td>$110</td><td>$141</td></tr>
+                                    <tr><th scope="row">Inspection and permit</th><td>$250</td><td>$320</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>Confirm which fees apply with your county Environmental Health office. If it requires a Level 3 soil report, get a separate quote from a <a href="https://dph.georgia.gov/environmental-health/onsite-sewage">Georgia-certified soil classifier</a>.</p>
+                        <p><a href="https://cobbanddouglaspublichealth.com/wp-content/uploads/2025/12/3-1-Environmental-Health-Fee-Schedule-Effective-1.1.2020-1.pdf">Fee schedule through 2026 (PDF)</a> ·
+                           <a href="https://cobbanddouglaspublichealth.com/wp-content/uploads/2026/07/CDPH-%E2%80%93-Center-for-Environmental-Health-Fee-Schedule-01.01.2027.pdf">2027 fee schedule (PDF)</a></p>
+                    </section>
                 @endif
                 @if ("septic-records-checklist".equals(stateMoneyPage.contentSlug()) && java.util.Set.of("WV", "IL").contains(state.stateCode()))
                     <p>Start with the address, even if you have no permit or drawing. We’ll look for the existing file and explain what we find, free.</p>
