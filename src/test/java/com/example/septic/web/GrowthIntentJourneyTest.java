@@ -97,20 +97,19 @@ class GrowthIntentJourneyTest {
         for (String path : List.of("/septic-record-finder/", "/onlinerme-septic-records/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-18</lastmod>");
         }
-        for (String path : List.of("/tdec-septic-records/", "/septic-records-checklist/tennessee/")) {
-            assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-18</lastmod>");
-        }
-        for (String path : List.of("/septic-permit-search-by-address/",
-                "/how-to-find-septic-records-online/",
+        assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/tennessee/</loc><lastmod>2026-11-18</lastmod>");
+        for (String path : List.of("/how-to-find-septic-records-online/",
                 "/apphealthcare-septic-permit-search/", "/sewer-or-septic-by-address/",
                 "/texas-ossf-records-search/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-05</lastmod>");
         }
-        for (String path : List.of("/north-carolina-septic-permit-lookup/", "/septic-records-checklist/north-carolina/")) {
+        for (String path : List.of("/north-carolina-septic-permit-lookup/", "/septic-records-checklist/north-carolina/",
+                "/tdec-septic-records/", "/septic-permit-search-by-address/", "/septic-permit-lookup/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-19</lastmod>");
         }
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-11-18</lastmod>");
         String counties = html("/sitemap-county.xml");
+        assertThat(counties).contains("<loc>https://septicpath.com/septic-records-checklist/colorado/el-paso-county/</loc><lastmod>2026-11-19</lastmod>");
         for (String county : List.of("north-carolina/johnston-county", "north-carolina/pender-county",
                 "texas/travis-county", "texas/williamson-county")) {
             assertThat(counties).contains("<loc>https://septicpath.com/septic-records-checklist/" + county

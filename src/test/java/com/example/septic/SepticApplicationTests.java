@@ -1437,8 +1437,8 @@ class SepticApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<lastmod>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/</loc><lastmod>2026-09-17</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc><lastmod>2026-09-01</lastmod></url>")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-11-18</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-permit-lookup/</loc><lastmod>2026-11-19</lastmod></url>")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/tdec-septic-records/</loc><lastmod>2026-11-19</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-record-finder/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/tennessee/</loc><lastmod>2026-11-18</lastmod></url>")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("<url><loc>https://example.test/septic-records-checklist/north-carolina/</loc><lastmod>2026-11-19</lastmod></url>")))
@@ -3109,14 +3109,19 @@ class SepticApplicationTests {
 	}
 
 	@Test
-	void elPasoCountyRecordsPageShowsTransferInspectorWorkflow() throws Exception {
+	void elPasoCountyRecordsPageShowsOfficialSearchAndCurrentSaleRules() throws Exception {
 		mockMvc.perform(get("/septic-records-checklist/colorado/el-paso-county/"))
 				.andExpect(status().isOk())
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("El Paso County Colorado Septic Records Checklist")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("El Paso County assessor parcel and property search")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("El Paso County keeps the practical OWTS file")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("parcel-linked file, the county help return, and any transfer-of-title inspection or installer-side path all support the same story")))
-				.andExpect(content().string(org.hamcrest.Matchers.containsString("transfer-of-title")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"https://property.spatialest.com/co/elpaso/\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("href=\"mailto:HEAsepticinfo@elpasoco.com\"")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Search official septic records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Email Public Health for missing records")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Since July 11, 2026")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("property sale has been voluntary")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("Notice of Determination")))
+				.andExpect(content().string(org.hamcrest.Matchers.containsString("cesspool remediation requests")))
+				.andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("transfer-of-title"))))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("licensed OWTS installer")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open Colorado records lookup")))
 				.andExpect(content().string(org.hamcrest.Matchers.containsString("Open the Colorado guide")));

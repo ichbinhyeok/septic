@@ -8655,38 +8655,38 @@
       "countyName": "El Paso County",
       "countySlug": "el-paso-county",
       "title": "El Paso County Colorado Septic Records Checklist and Permit Lookup",
-      "metaDescription": "El Paso County septic records checklist and permit lookup with online OWTS record access, assessor parcel lookup, transfer-of-title inspector routing, and licensed-installer permit rules before you trust a property-sale or repair story.",
-      "introCopy": "In El Paso County, the county health department explicitly tells owners that OWTS records are viewable online, explains what to do when the file is incomplete, and separates property-sale inspection work from ordinary operations and maintenance.",
-      "uniqueAngle": "This county makes the sale-time branch unusually visible: online records first, assessor parcel lookup second, county help by email if the file is incomplete, and a distinct certified-inspector list for transfer-of-title work.",
-      "targetReader": "Best for El Paso County buyers, sellers, owners, and agents who need to know whether the county OWTS file is good enough for a sale, a repair scope, or a permit conversation.",
+      "metaDescription": "Search El Paso County, Colorado septic permits by address or parcel number. Email Public Health for missing files and check the current property-sale inspection rules.",
+      "introCopy": "Search the county's parcel records for septic permits and drawings. If an OWTS document is missing, contact El Paso County Public Health.",
+      "uniqueAngle": "El Paso County links septic records to its assessor property search and publishes a Public Health email for missing records.",
+      "targetReader": "El Paso County property owners, buyers, sellers, and agents looking for a permit, drawing, or inspection record.",
       "officeLabel": "El Paso County Public Health OWTS office",
       "officeUrl": "https://www.elpasocountyhealth.org/licenses-permits-inspections-water-testing/onsite-wastewater-treatment-systems/",
-      "recordsLabel": "El Paso County assessor parcel and property search",
-      "recordsUrl": "https://assessor.elpasoco.com/",
+      "recordsLabel": "El Paso County official septic records search",
+      "recordsUrl": "https://property.spatialest.com/co/elpaso/",
       "contactLine": "El Paso County Public Health OWTS Program | HEAsepticinfo@elpasoco.com | 719-578-3199 option 3",
       "decisionSteps": [
-        "Open the county OWTS page first and use the county's online-records instruction before you start calling installers.",
-        "Search the parcel through the county assessor path because El Paso County says OWTS records are viewable online there.",
-        "If the file is incomplete or the property is being sold, move to the county's next branch immediately: email the OWTS program for help and use a county-certified property-sale inspector for transfer-of-title work."
+        "In the official property search, select Address or Schedule / Parcel Number and open the matching property.",
+        "Look for the OWTS records attached to that parcel. If a permit, plan, or final approval is missing, email Public Health with the property address and parcel number if known.",
+        "For a property sale, you can choose to request the county's certified inspection review and a Notice of Determination."
       ],
       "recordsToRequest": [
-        "All OWTS documents tied to the parcel through the county's online records path.",
-        "Any county help response or supplemental record pull if the online file is incomplete.",
-        "Any transfer-of-title inspection results, property-sale acceptance material, and prior permit or repair records tied to the system."
+        "The septic permit, site plan or drawing, and final approval tied to the parcel.",
+        "Permits and approvals for any later repairs or alterations.",
+        "A Notice of Determination if the county reviewed a certified inspection for the property."
       ],
       "lowEndBreakers": [
-        "If the online parcel file is incomplete, the low-end number is still a placeholder until the county clarifies what is missing.",
-        "If the next real step is transfer-of-title review rather than normal maintenance, a basic service quote is solving the wrong problem.",
-        "If permit applications must come from a licensed OWTS installer, owner assumptions and informal sketches do not replace the county path."
+        "Some parcels have incomplete online records. Ask Public Health for the missing documents before planning a repair.",
+        "A proposed change of use or cesspool remediation can require a certified inspection.",
+        "A licensed OWTS installer must submit a new OWTS permit application."
       ],
       "faqBlocks": [
         {
           "question": "What is the first El Paso County septic lookup step?",
-          "answer": "Start with the county OWTS page and the linked assessor parcel search because the county says OWTS records are viewable online there."
+          "answer": "Open the official property search and choose Address or Schedule / Parcel Number. If you cannot find the septic record, email HEAsepticinfo@elpasoco.com."
         },
         {
-          "question": "Why check the El Paso County septic file before arranging a transfer inspection?",
-          "answer": "Because the county directly connects record lookup, parcel search, email fallback, and transfer-of-title inspector routing in one local workflow."
+          "question": "Does El Paso County require a septic inspection when a property is sold?",
+          "answer": "Since July 11, 2026, the county's certified OWTS inspection review for a property sale has been voluntary. The county can issue a Notice of Determination after review. Certified inspections are still required for change-of-use requests, cesspool remediation requests, and other cases designated by Public Health."
         }
       ],
       "internalLinkTargets": [
@@ -8698,22 +8698,23 @@
       "officialSourceIds": [
         "co_el_paso_01",
         "co_el_paso_02",
-        "co_el_paso_03"
+        "co_el_paso_03",
+        "co_el_paso_04"
       ],
       "publishStatus": "published",
       "workflowStructure": {
         "fileOwnerCategory": "county_first",
-        "fileOwnerModel": "El Paso County keeps the practical OWTS file, but the real story starts with the county parcel-linked records return and then the transfer-of-title inspection lane when the property is changing hands.",
-        "firstArtifactToPull": "The county online OWTS file first, then any email help return, transfer-of-title inspection result, and permit or repair record tied to the same parcel.",
+        "fileOwnerModel": "El Paso County Public Health maintains the septic file and links to the assessor's parcel search for online access.",
+        "firstArtifactToPull": "Look for the septic permit and site plan attached to the parcel.",
         "permitCloseoutCategory": "packet_closeout",
-        "permitCloseoutSignal": "El Paso gets real when the parcel-linked file, any missing-record follow-up, and the transfer-of-title or installer-side paperwork all support the same county story.",
-        "transferCategory": "formal_transfer_artifact",
-        "transferArtifact": "For buyer diligence, the first artifact is the county transfer-of-title inspection result rather than a generic home-sale septic comment.",
+        "permitCloseoutSignal": "Check for the county's final approval and any later repair permit tied to the same parcel.",
+        "transferCategory": "generic",
+        "transferArtifact": "The county's property-sale review is voluntary. If a certified inspection was reviewed, ask for the Notice of Determination.",
         "specialProgramCategory": "records_fallback",
-        "specialProgramSignal": "The county help lane is not backup trivia here. It is the official fallback when the online file is incomplete and the easy parcel story falls apart.",
+        "specialProgramSignal": "Email the OWTS program if the parcel search is missing a septic record.",
         "malfunctionCategory": "repair_branch",
-        "malfunctionSignal": "If a licensed installer must step in to move the file forward, the parcel is already outside a simple owner-side estimate lane.",
-        "quoteGate": "Do not move into pricing until the parcel-linked file, the county help return, and any transfer-of-title inspection or installer-side path all support the same story, because El Paso can look complete online while the county still treats the file as open."
+        "malfunctionSignal": "Ask a licensed OWTS installer which permits or approvals the planned repair requires.",
+        "quoteGate": "Check the parcel's permit, approved plan, and any later repairs before using the record to scope work."
       }
     },
     {
