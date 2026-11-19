@@ -1073,7 +1073,7 @@ public final class CountyAcquisitionProfileCatalog {
                     "",
                     "252-902-3200",
                     "Pitt County septic permit file - {{address}}",
-                    "Pitt County publishes the property and design facts used by its onsite wastewater program, but the live EnerGov search fields were not independently verified. Use these as file-matching and follow-up facts.",
+                    "The county portal guide documents search by address or permit number. Use the fields below to match the property and prepare an office request for missing records.",
                     """
                     Pitt County search and follow-up sheet
 

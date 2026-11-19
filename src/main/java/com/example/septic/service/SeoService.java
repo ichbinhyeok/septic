@@ -844,7 +844,7 @@ public class SeoService {
             case "NC::buncombe-county" -> "Search Buncombe County well and septic records in Accela by address or parcel PIN, then use Environmental Health for an existing-system, inspection, new, or repair route.";
             case "NC::wake-county" -> "Match the Wake County parcel in iMAPS, open Permit Search, and download the scanned septic permit and attachments without treating a missing Septic box as no record.";
             case "NC::union-county" -> "Find Union County NC septic records: separate Evolve permit searches from Environmental Health files, check county research fees, or get free record help.";
-            case "NC::pitt-county" -> "Search Pitt County EnerGov records, then verify the Authorization to Construct, site plan, primary drainfield, repair area, and final approval with Environmental Health.";
+            case "NC::pitt-county" -> "Search Pitt County septic permits by address or permit number. Missing a permit or site plan? Ask Pitt County Environmental Health for a copy.";
             case "NC::pender-county", "NC::johnston-county", "TX::travis-county", "TX::williamson-county" -> countyPage.metaDescription();
             case "AL::tuscaloosa-county" -> "Call Tuscaloosa County's Environmental Office with the address, parcel, owner, approximate year, and exact septic permit or record request.";
             case "AL::calhoun-county" -> "Use Calhoun County's direct Environmental Department route for an onsite sewage permit, historical file, inspection record, repair, or development request.";

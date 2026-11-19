@@ -1633,7 +1633,7 @@ public final class CountyAccessProfileCatalog {
                     "portal_with_fallback",
                     "EnerGov permit search with Environmental Health fallback",
                     "Search Pitt County permits, then verify the Authorization to Construct and repair area",
-                    "Pitt County links its EnerGov self-service portal from the On-Site Wastewater program. Search by the property clues available, retain the permit number, and then distinguish portal metadata from the actual Authorization to Construct, site plan, operation approval, and repair-area evidence. Confirm that the returned file matches the parcel and addresses both the primary drainfield and repair area.",
+                    "Use Search in Pitt County’s EnerGov portal and enter the street address or permit number. Save the permit number from a matching result. Ask Environmental Health for the actual permit, any filed layout, and the final approval or inspection if you can only see the permit listing.",
                     "Search Pitt County permits",
                     "https://pittcountync-energovweb.tylerhost.net/apps/selfservice#/home",
                     "Open Pitt County On-Site Wastewater",

@@ -39,6 +39,12 @@ public record CountyRecordStartView(
                     "Search by street address, then select the system marker.",
                     "The map excludes Cincinnati, Norwood and Springdale."
             );
+            case "NC::pitt-county" -> new CountyRecordStartView(
+                    access.primaryUrl(), "Open Pitt County permit search",
+                    "Street address or permit number. Keep the tax parcel number for an office request.",
+                    "Choose Search in the county portal. If the search is empty or the permit has no site plan attached, ask Environmental Health for the existing septic file.",
+                    "tel:+12529023200", "Call Environmental Health"
+            );
             case "IN::tippecanoe-county" -> new CountyRecordStartView(
                     "https://www.tippecanoe.in.gov/569/Sewage-Disposal",
                     "Contact the Health Department for a diagram",

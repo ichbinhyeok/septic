@@ -94,7 +94,7 @@ class GrowthIntentJourneyTest {
 
     @Test void sitemapDatesReflectChangedPagesWithoutUpdatingUnchangedStates() throws Exception {
         String sitemap = html("/sitemap.xml");
-        for (String path : List.of("/septic-record-finder/", "/north-carolina-septic-permit-lookup/", "/onlinerme-septic-records/")) {
+        for (String path : List.of("/septic-record-finder/", "/onlinerme-septic-records/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-18</lastmod>");
         }
         for (String path : List.of("/tdec-septic-records/", "/septic-records-checklist/tennessee/")) {
@@ -106,7 +106,9 @@ class GrowthIntentJourneyTest {
                 "/texas-ossf-records-search/")) {
             assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-05</lastmod>");
         }
-        assertThat(sitemap).contains("<loc>https://septicpath.com/septic-records-checklist/north-carolina/</loc><lastmod>2026-10-21</lastmod>");
+        for (String path : List.of("/north-carolina-septic-permit-lookup/", "/septic-records-checklist/north-carolina/")) {
+            assertThat(sitemap).contains("<loc>https://septicpath.com" + path + "</loc><lastmod>2026-11-19</lastmod>");
+        }
         assertThat(sitemap).contains("<loc>https://septicpath.com/septic-tank-location-records/</loc><lastmod>2026-11-18</lastmod>");
         String counties = html("/sitemap-county.xml");
         for (String county : List.of("north-carolina/johnston-county", "north-carolina/pender-county",
