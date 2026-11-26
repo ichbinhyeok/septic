@@ -2141,7 +2141,16 @@
                     </ul>
                     @if (stateMoneyPageLinks.size() > 12)
                         <details class="county-link-overflow">
-                            <summary>Browse state-specific workflow pages</summary>
+                            @if ("septic-records-checklist".equals(contentPage.slug()))
+                                <summary>Browse the remaining states</summary>
+                                <ul class="detail-list">
+                                    @for (var stateLink : stateMoneyPageLinks.stream().skip(12).sorted(java.util.Comparator.comparing(com.example.septic.web.StateMoneyPageLink::stateName)).toList())
+                                        <li><a href="${stateLink.path()}" data-track-click="nav" data-track-source-context="content_page_state_specific" data-track-target-type="state_money_page">${stateLink.stateName()}</a></li>
+                                    @endfor
+                                </ul>
+                            @else
+                                <summary>Browse state-specific workflow pages</summary>
+                            @endif
                             <p><a href="/states/" data-track-click="nav" data-track-source-context="content_page_state_specific_directory" data-track-target-type="state_directory">Open the full state guide directory</a></p>
                         </details>
                     @endif
